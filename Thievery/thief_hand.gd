@@ -12,7 +12,7 @@ func _input(event: InputEvent) -> void:
 		if (Input.is_action_just_pressed("grab")):
 			# On grab, check for overlap in hand_area and grab all goodies
 			for body in hand_area.get_overlapping_bodies():
-				if body is Goodie:
+				if (body is Goodie):
 					body.grabbed(hand_sprite)
 		elif (Input.is_action_just_released("grab")):
 			for goodie in get_tree().get_nodes_in_group("goodies"):

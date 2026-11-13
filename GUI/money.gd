@@ -1,0 +1,9 @@
+extends Control
+## Displays the UI element for counting up the player's money
+
+## Editor nodes
+@export var money_label: Label ## The Label responsible for displaying the total money
+
+## Used to update the current money amount
+func set_money(amount: float) -> void:
+	money_label.set_text("$%.2f" % amount)

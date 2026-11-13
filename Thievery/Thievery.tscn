@@ -50,3 +50,21 @@ position = Vector2(-64, 120)
 
 [node name="ThiefBag" parent="." unique_id=1923026651 instance=ExtResource("5_cgip7")]
 position = Vector2(64, 240)
+
+[node name="ThieveryUI" type="Control" parent="." unique_id=1489566288]
+custom_minimum_size = Vector2(320, 240)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 320.0
+offset_bottom = 240.0
+
+[node name="Button" type="Button" parent="ThieveryUI" unique_id=476092316]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 32.0
+offset_right = 107.0
+offset_bottom = 63.0
+text = "Let's Split!"
+
+[connection signal="get_money" from="ThiefBag" to="." method="_on_thief_bag_get_money"]
+[connection signal="pressed" from="ThieveryUI/Button" to="." method="_on_button_pressed"]
