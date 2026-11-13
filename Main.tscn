@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://cn8sfh0ommq0c"]
+
+[ext_resource type="Script" uid="uid://bi83orudkolxo" path="res://main.gd" id="1_glv2v"]
+[ext_resource type="PackedScene" uid="uid://rrcjv7q3caks" path="res://Entities/Player/Player.tscn" id="2_uu6xs"]
+[ext_resource type="PackedScene" uid="uid://cl3j8ys3euhdn" path="res://Levels/Level1.tscn" id="3_r0du0"]
+
+[sub_resource type="Environment" id="Environment_c55ln"]
+background_mode = 3
+tonemap_mode = 3
+glow_intensity = 0.2
+glow_strength = 0.8
+
+[node name="Main" type="Node2D" unique_id=571149764]
+script = ExtResource("1_glv2v")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1560649801]
+environment = SubResource("Environment_c55ln")
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=975184735]
+blend_mode = 1
+
+[node name="Level1" parent="." unique_id=792643418 instance=ExtResource("3_r0du0")]
+
+[node name="Player" parent="." unique_id=1364859685 instance=ExtResource("2_uu6xs")]
+position = Vector2(128, 96)

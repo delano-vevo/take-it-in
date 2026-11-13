@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://cl3j8ys3euhdn"]
+
+[ext_resource type="PackedScene" uid="uid://brobwy7lfpdj8" path="res://Environment/Wall.tscn" id="1_w77jt"]
+[ext_resource type="PackedScene" uid="uid://dpyjy1eev83g3" path="res://Entities/Enemies/Guard/Guard.tscn" id="2_3anf8"]
+
+[node name="Level1" type="Node2D" unique_id=792643418]
+
+[node name="Floor" type="Polygon2D" parent="." unique_id=868716719]
+color = Color(0.654902, 0.32156864, 0.32156864, 1)
+polygon = PackedVector2Array(0, 0, 360, 0, 360, 240, 0, 240)
+
+[node name="Walls" type="Node2D" parent="." unique_id=1832339978]
+
+[node name="Wall" parent="Walls" unique_id=676972316 instance=ExtResource("1_w77jt")]
+position = Vector2(96, 128)
+scale = Vector2(8.239999, 1)
+
+[node name="Enemies" type="Node2D" parent="." unique_id=1527932540]
+
+[node name="Guard" parent="Enemies" unique_id=1008242168 instance=ExtResource("2_3anf8")]
+position = Vector2(76, 176)
+patrol_path = Array[Vector2]([Vector2(76, 176), Vector2(176, 176)])
