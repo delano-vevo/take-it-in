@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://usqtypqdqqqf"]
+
+[ext_resource type="Texture2D" uid="uid://3lwfuu1knwhl" path="res://Thievery/Assets/loot_bowl.png" id="1_51krx"]
+
+[node name="LootBowl" type="StaticBody2D" unique_id=732313442]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1938382291]
+texture = ExtResource("1_51krx")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1145269116]
+polygon = PackedVector2Array(-92, -34, -88, -34, -84, -16, -74, 0, -62, 12, -44, 22, -18, 30, 18, 30, 44, 22, 66, 8, 82, -10, 88, -24, 88, -34, 92, -34, 92, -26, 86, -6, 70, 12, 48, 26, 24, 34, -22, 34, -46, 26, -66, 14, -78, 2, -88, -14, -92, -26)

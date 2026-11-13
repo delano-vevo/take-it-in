@@ -10,8 +10,10 @@ tonemap_mode = 3
 glow_intensity = 0.2
 glow_strength = 0.8
 
-[node name="Main" type="Node2D" unique_id=571149764]
+[node name="Main" type="Node2D" unique_id=571149764 node_paths=PackedStringArray("ui_layer", "current_level")]
 script = ExtResource("1_glv2v")
+ui_layer = NodePath("UILayer")
+current_level = NodePath("Level1")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1560649801]
 environment = SubResource("Environment_c55ln")
@@ -23,3 +25,6 @@ blend_mode = 1
 
 [node name="Player" parent="." unique_id=1364859685 instance=ExtResource("2_uu6xs")]
 position = Vector2(128, 96)
+
+[node name="UILayer" type="CanvasLayer" parent="." unique_id=2049434255]
+layer = 1000

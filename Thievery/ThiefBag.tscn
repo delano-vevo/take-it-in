@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://3fh3qrokvyjq"]
+
+[ext_resource type="Script" uid="uid://bhe0cj5cqdase" path="res://Thievery/thief_bag.gd" id="1_tlidt"]
+[ext_resource type="Texture2D" uid="uid://cpgvh2g3bgybq" path="res://Thievery/Assets/goodie_bag.png" id="2_4wlj2"]
+[ext_resource type="Texture2D" uid="uid://3anacrnvwh3q" path="res://Thievery/Assets/goodie_bag_front.png" id="3_gq3in"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4wlj2"]
+radius = 6.0
+height = 128.0
+
+[node name="ThiefBag" type="Area2D" unique_id=1923026651]
+script = ExtResource("1_tlidt")
+
+[node name="BackSprite" type="Sprite2D" parent="." unique_id=1033199616]
+z_index = -1
+texture = ExtResource("2_4wlj2")
+offset = Vector2(0, -24)
+
+[node name="FrontSprite" type="Sprite2D" parent="." unique_id=2141401042]
+z_index = 1
+texture = ExtResource("3_gq3in")
+offset = Vector2(0, -24)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=281001096]
+position = Vector2(2, -14)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_4wlj2")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
