@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cp3co1llqyi0h"]
+
+[ext_resource type="Script" uid="uid://gtyq7bep6amb" path="res://Thievery/Goodies/goodie.gd" id="1_scdh0"]
+[ext_resource type="Texture2D" uid="uid://cunpnf2fey4i2" path="res://Thievery/Assets/gold_coin.png" id="2_6h15t"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_scdh0"]
+radius = 14.0
+
+[node name="GoldCoin" type="RigidBody2D" unique_id=67825559 groups=["goodies"]]
+script = ExtResource("1_scdh0")
+metadata/_custom_type_script = "uid://gtyq7bep6amb"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1272520303]
+texture = ExtResource("2_6h15t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1453150756]
+shape = SubResource("CircleShape2D_scdh0")

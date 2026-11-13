@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://blbhu1l75da3g"]
+
+[ext_resource type="Script" uid="uid://dfio5b011yx3k" path="res://GUI/timer.gd" id="1_f2q12"]
+
+[node name="Timer" type="Control" unique_id=1262625749 node_paths=PackedStringArray("timer_label")]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+script = ExtResource("1_f2q12")
+timer_label = NodePath("Label")
+
+[node name="Label" type="Label" parent="." unique_id=1702621258]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -160.0
+offset_right = 160.0
+offset_bottom = 28.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0.80784315, 0.6117647, 1)
+theme_override_colors/font_outline_color = Color(0.101960786, 0.03137255, 0.05490196, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 20
+text = "TAKE IT IN 60 SECONDS"
+horizontal_alignment = 1

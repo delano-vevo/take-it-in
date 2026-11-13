@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://c7j3kamj1y7cy"]
+
+[ext_resource type="Script" uid="uid://cvynv2aoubbr0" path="res://Thievery/thievery.gd" id="1_bq0t3"]
+[ext_resource type="PackedScene" uid="uid://1150m22xglg0" path="res://Thievery/ThiefHand.tscn" id="1_qlvgc"]
+[ext_resource type="PackedScene" uid="uid://usqtypqdqqqf" path="res://Thievery/LootContainers/LootBowl.tscn" id="3_0oxwf"]
+[ext_resource type="PackedScene" uid="uid://cp3co1llqyi0h" path="res://Thievery/Goodies/GoldCoin.tscn" id="3_5w44m"]
+[ext_resource type="PackedScene" uid="uid://3fh3qrokvyjq" path="res://Thievery/ThiefBag.tscn" id="5_cgip7"]
+
+[node name="Thievery" type="Node2D" unique_id=990197385 node_paths=PackedStringArray("hand")]
+script = ExtResource("1_bq0t3")
+hand = NodePath("ThiefHand")
+
+[node name="Background" type="Polygon2D" parent="." unique_id=108282921]
+z_index = -100
+color = Color(0.32941177, 0.19607843, 0.27450982, 1)
+polygon = PackedVector2Array(0, 0, 320, 0, 320, 240, 0, 240)
+
+[node name="LootBowl" parent="." unique_id=732313442 instance=ExtResource("3_0oxwf")]
+position = Vector2(216, 160)
+
+[node name="GoldCoin" parent="." unique_id=67825559 instance=ExtResource("3_5w44m")]
+position = Vector2(172, 100)
+
+[node name="GoldCoin2" parent="." unique_id=1372757138 instance=ExtResource("3_5w44m")]
+position = Vector2(224, 112)
+
+[node name="GoldCoin3" parent="." unique_id=1733584413 instance=ExtResource("3_5w44m")]
+position = Vector2(264, 104)
+
+[node name="GoldCoin4" parent="." unique_id=739084649 instance=ExtResource("3_5w44m")]
+position = Vector2(220, 72)
+
+[node name="GoldCoin5" parent="." unique_id=2135165595 instance=ExtResource("3_5w44m")]
+position = Vector2(260, 60)
+
+[node name="GoldCoin6" parent="." unique_id=1227415273 instance=ExtResource("3_5w44m")]
+position = Vector2(184, 40)
+
+[node name="GoldCoin7" parent="." unique_id=2110982960 instance=ExtResource("3_5w44m")]
+position = Vector2(220, 24)
+
+[node name="GoldCoin8" parent="." unique_id=153837516 instance=ExtResource("3_5w44m")]
+position = Vector2(160, 68)
+
+[node name="GoldCoin9" parent="." unique_id=1015038081 instance=ExtResource("3_5w44m")]
+position = Vector2(160, 68)
+
+[node name="ThiefHand" parent="." unique_id=1398494883 instance=ExtResource("1_qlvgc")]
+position = Vector2(-64, 120)
+
+[node name="ThiefBag" parent="." unique_id=1923026651 instance=ExtResource("5_cgip7")]
+position = Vector2(64, 240)
+
+[node name="ThieveryUI" type="Control" parent="." unique_id=1489566288]
+custom_minimum_size = Vector2(320, 240)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 320.0
+offset_bottom = 240.0
+
+[node name="Button" type="Button" parent="ThieveryUI" unique_id=476092316]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 32.0
+offset_right = 107.0
+offset_bottom = 63.0
+text = "Let's Split!"
+
+[connection signal="get_money" from="ThiefBag" to="." method="_on_thief_bag_get_money"]
+[connection signal="pressed" from="ThieveryUI/Button" to="." method="_on_button_pressed"]
