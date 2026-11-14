@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://b2bowdhqgv2y1"]
+
+[ext_resource type="PackedScene" uid="uid://blbhu1l75da3g" path="res://GUI/Gameplay/Timer.tscn" id="1_lcf65"]
+[ext_resource type="Script" uid="uid://ckj0si82ku7kq" path="res://GUI/Gameplay/gameplay_ui.gd" id="1_v83a3"]
+[ext_resource type="PackedScene" uid="uid://bqhay07opq2lv" path="res://GUI/Gameplay/Money.tscn" id="2_n06ao"]
+
+[node name="GameplayUI" type="Control" unique_id=577120502 node_paths=PackedStringArray("timer_ui", "money_ui")]
+process_mode = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_v83a3")
+timer_ui = NodePath("Timer")
+money_ui = NodePath("Money")
+
+[node name="Timer" parent="." unique_id=1262625749 instance=ExtResource("1_lcf65")]
+layout_mode = 1
+
+[node name="Money" parent="." unique_id=1474558034 instance=ExtResource("2_n06ao")]
+layout_mode = 1

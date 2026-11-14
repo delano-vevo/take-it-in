@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://bfsg5mx8yoxg"]
+
+[ext_resource type="Script" uid="uid://crm5118ngsep5" path="res://GUI/Screens/LevelSelect/menu_level.gd" id="1_aa0js"]
+
+[node name="MenuLevel" type="ColorRect" unique_id=187450197 node_paths=PackedStringArray("button")]
+custom_minimum_size = Vector2(40, 40)
+color = Color(0.32941177, 0.19607843, 0.27450982, 1)
+script = ExtResource("1_aa0js")
+button = NodePath("SelectButton")
+
+[node name="SelectButton" type="Button" parent="." unique_id=156221538]
+custom_minimum_size = Vector2(32, 32)
+custom_maximum_size = Vector2(32, 32)
+layout_mode = 0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 36.0
+offset_bottom = 36.0
+theme_override_font_sizes/font_size = 12
+
+[connection signal="pressed" from="SelectButton" to="." method="_on_select_button_pressed"]

@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://b81yt6gv5g6pl"]
+
+[ext_resource type="Texture2D" uid="uid://50wpap4yfkny" path="res://GUI/Assets/game_over.png" id="1_dhtis"]
+[ext_resource type="Script" uid="uid://pqo3pk7mmydy" path="res://GUI/Screens/game_over_screen.gd" id="1_rjosd"]
+
+[node name="GameOverScreen" type="Control" unique_id=316569776]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rjosd")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=693270377]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_dhtis")
+
+[node name="Label" type="Label" parent="." unique_id=1035238790]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -182.5
+offset_right = 182.5
+offset_bottom = 34.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 24
+text = "GAME OVER"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="." unique_id=1138096892]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -158.0
+offset_top = -82.0
+offset_right = 162.0
+offset_bottom = -33.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "You have been apprehended and sentenced to execution by firing squad."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Button" type="Button" parent="." unique_id=967102582]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -43.5
+offset_top = -31.0
+offset_right = 43.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "Try again?"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

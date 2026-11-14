@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://eajqyr6p3ns1" path="res://Entities/Player/StateMachine/player_state_machine.gd" id="3_an6q6"]
 [ext_resource type="Script" uid="uid://bjw16hyr7xlxp" path="res://Entities/Player/StateMachine/player_state_idle.gd" id="4_t38ms"]
 [ext_resource type="Script" uid="uid://cymlxg3omkgei" path="res://Entities/Player/StateMachine/player_state_run.gd" id="5_hj1c0"]
+[ext_resource type="Script" uid="uid://ba515ag44amkm" path="res://Entities/Player/StateMachine/player_state_caught.gd" id="6_hj1c0"]
 [ext_resource type="Texture2D" uid="uid://bwwdrrm5quidh" path="res://Entities/Player/Assets/flashlight_mask.png" id="6_t38ms"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ww0jn"]
@@ -36,6 +37,23 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_jynvv"]
+resource_name = "caught"
+length = 0.39999999999999997
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.20000002),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [28, 29]
 }
 
 [sub_resource type="Animation" id="Animation_an6q6"]
@@ -225,6 +243,7 @@ tracks/1/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1des2"]
 _data = {
 &"RESET": SubResource("Animation_ww0jn"),
+&"caught": SubResource("Animation_jynvv"),
 &"idle_down": SubResource("Animation_an6q6"),
 &"idle_left": SubResource("Animation_1des2"),
 &"idle_right": SubResource("Animation_vweq0"),
@@ -307,15 +326,27 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(-92, -42)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_e5kic"]
-graph_offset = Vector2(-557, 108)
+graph_offset = Vector2(-217, 121)
 nodes/MoveStateMachine/node = SubResource("AnimationNodeStateMachine_lmeus")
 nodes/MoveStateMachine/position = Vector2(-100, 140)
 node_connections = [&"output", 0, &"MoveStateMachine"]
 
-[node name="Player" type="CharacterBody2D" unique_id=1364859685 node_paths=PackedStringArray("animation_tree", "state_machine")]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hj1c0"]
+particle_flag_disable_z = true
+spread = 50.0
+initial_velocity_min = 19.6
+initial_velocity_max = 29.41
+gravity = Vector3(0, 90, 0)
+color = Color(0.36589682, 0.5627717, 1, 1)
+
+[node name="Player" type="CharacterBody2D" unique_id=1364859685 node_paths=PackedStringArray("animation_player", "crying_particles_l", "crying_particles_r", "state_machine", "animation_tree")]
+collision_layer = 2
 script = ExtResource("1_e5kic")
-animation_tree = NodePath("AnimationTree")
+animation_player = NodePath("AnimationPlayer")
+crying_particles_l = NodePath("CryingParticlesL")
+crying_particles_r = NodePath("CryingParticlesR")
 state_machine = NodePath("StateMachine")
+animation_tree = NodePath("AnimationTree")
 move_speed = 150.0
 metadata/_custom_type_script = "uid://b2wob37ufah6y"
 
@@ -323,7 +354,7 @@ metadata/_custom_type_script = "uid://b2wob37ufah6y"
 texture = ExtResource("2_ww0jn")
 offset = Vector2(0, -8)
 hframes = 7
-vframes = 4
+vframes = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=816742735]
 position = Vector2(0, -8)
@@ -337,10 +368,13 @@ active = false
 tree_root = SubResource("AnimationNodeBlendTree_e5kic")
 anim_player = NodePath("../AnimationPlayer")
 parameters/MoveStateMachine/Idle/blend_position = Vector2(0, 0)
-parameters/MoveStateMachine/Run/blend_position = Vector2(0, 0)
+parameters/MoveStateMachine/Run/blend_position = Vector2(-0.0017985702, -0.0045661926)
 
-[node name="StateMachine" type="Node" parent="." unique_id=648237448 node_paths=PackedStringArray("current_state", "parent")]
+[node name="StateMachine" type="Node" parent="." unique_id=648237448 node_paths=PackedStringArray("idle_state", "run_state", "caught_state", "current_state", "parent")]
 script = ExtResource("3_an6q6")
+idle_state = NodePath("Idle")
+run_state = NodePath("Run")
+caught_state = NodePath("Caught")
 current_state = NodePath("Idle")
 parent = NodePath("..")
 
@@ -352,6 +386,26 @@ run_state = NodePath("../Run")
 script = ExtResource("5_hj1c0")
 idle_state = NodePath("../Idle")
 
+[node name="Caught" type="Node" parent="StateMachine" unique_id=852649216]
+script = ExtResource("6_hj1c0")
+
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=595674738]
 shadow_enabled = true
 texture = ExtResource("6_t38ms")
+
+[node name="CryingParticlesR" type="GPUParticles2D" parent="." unique_id=77384239]
+visible = false
+position = Vector2(4, -11)
+emitting = false
+amount = 4
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_hj1c0")
+
+[node name="CryingParticlesL" type="GPUParticles2D" parent="." unique_id=2039394129]
+visible = false
+position = Vector2(-4, -11)
+scale = Vector2(-1, 1)
+emitting = false
+amount = 4
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_hj1c0")

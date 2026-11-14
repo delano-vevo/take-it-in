@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://blbhu1l75da3g"]
 
-[ext_resource type="Script" uid="uid://dfio5b011yx3k" path="res://GUI/timer.gd" id="1_f2q12"]
+[ext_resource type="Script" uid="uid://dfio5b011yx3k" path="res://GUI/Gameplay/timer.gd" id="1_f2q12"]
 
 [node name="Timer" type="Control" unique_id=1262625749 node_paths=PackedStringArray("timer_label")]
 layout_mode = 3

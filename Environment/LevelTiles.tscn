@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://c87tbcgwjtk3"]
+
+[ext_resource type="Texture2D" uid="uid://ghf6s8npf4cu" path="res://Environment/Assets/wall_tile.png" id="1_pgkui"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_pgkui"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r2e1u"]
+texture = ExtResource("1_pgkui")
+0:0/0 = 0
+0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_pgkui")
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_8fmli"]
+occlusion_layer_0/light_mask = 1
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_r2e1u")
+
+[node name="LevelTiles" type="TileMapLayer" unique_id=1201900110 groups=["navigation_polygon_source_geometry_group"]]
+tile_set = SubResource("TileSet_8fmli")

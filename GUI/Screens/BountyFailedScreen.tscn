@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://cyy20bm0fuolg"]
+
+[ext_resource type="Script" uid="uid://dsc23f60ixotb" path="res://GUI/Screens/bounty_failed_screen.gd" id="1_cw0be"]
+[ext_resource type="Texture2D" uid="uid://dvp4gt2lulbdl" path="res://GUI/Assets/bounty_failed.png" id="2_ugwso"]
+
+[node name="BountyFailedScreen" type="Control" unique_id=599468227]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cw0be")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1491309563]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_ugwso")
+
+[node name="Label" type="Label" parent="." unique_id=300624943]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -160.0
+offset_right = 160.0
+offset_bottom = 49.0
+grow_horizontal = 2
+text = "You failed to meet your quota.
+The Boss was not pleased."
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="." unique_id=216475156]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -43.5
+offset_top = -31.0
+offset_right = 43.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "Try again?"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
