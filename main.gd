@@ -23,6 +23,9 @@ func _ready() -> void:
 	RenderingServer.set_default_clear_color(Color("a75252"))
 	# Initialize UI elements
 	money_ui.set_money(0)
+	# Pass player reference to all enemies
+	for enemy in get_tree().get_nodes_in_group("enemies"):
+		enemy.player = player
 
 ## Game loop
 func _process(delta: float) -> void:

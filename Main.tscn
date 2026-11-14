@@ -31,7 +31,7 @@ blend_mode = 1
 [node name="Level1" parent="." unique_id=792643418 instance=ExtResource("3_r0du0")]
 
 [node name="Player" parent="." unique_id=1364859685 instance=ExtResource("2_uu6xs")]
-position = Vector2(128, 96)
+position = Vector2(136, 48)
 
 [node name="UILayer" type="CanvasLayer" parent="." unique_id=2049434255]
 layer = 1000

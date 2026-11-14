@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://dvuleox15f5mw" path="res://Entities/Classes/state_machine.gd" id="5_b6mrl"]
 [ext_resource type="Script" uid="uid://bj8ilf2u7qr2" path="res://Entities/Enemies/BaseLogic/enemy_state_idle.gd" id="6_xpaf1"]
 [ext_resource type="Script" uid="uid://dxe8710shl248" path="res://Entities/Enemies/BaseLogic/enemy_state_patrol.gd" id="7_dl872"]
+[ext_resource type="Script" uid="uid://co1pdqx1iwxx6" path="res://Entities/Enemies/BaseLogic/enemy_state_chase.gd" id="8_dl872"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vvg72"]
 radius = 4.0
@@ -480,8 +481,11 @@ nodes/MoveStateMachine/node = SubResource("AnimationNodeStateMachine_7wgl2")
 nodes/MoveStateMachine/position = Vector2(-40, 100)
 node_connections = [&"output", 0, &"MoveStateMachine"]
 
-[node name="Guard" type="CharacterBody2D" unique_id=1008242168 node_paths=PackedStringArray("state_machine", "animation_tree")]
+[node name="Guard" type="CharacterBody2D" unique_id=1008242168 node_paths=PackedStringArray("nav_agent", "sight_ray", "state_machine", "animation_tree") groups=["enemies"]]
 script = ExtResource("1_74ekp")
+nav_agent = NodePath("NavigationAgent2D")
+sight_ray = NodePath("PlayerLookRay")
+chase_speed = 80.0
 state_machine = NodePath("StateMachine")
 animation_tree = NodePath("AnimationTree")
 move_speed = 50.0
@@ -519,15 +523,25 @@ script = ExtResource("5_b6mrl")
 current_state = NodePath("Idle")
 parent = NodePath("..")
 
-[node name="Idle" type="Node" parent="StateMachine" unique_id=676996974 node_paths=PackedStringArray("patrol_state", "idle_wait")]
+[node name="Idle" type="Node" parent="StateMachine" unique_id=676996974 node_paths=PackedStringArray("patrol_state", "chase_state", "idle_wait")]
 script = ExtResource("6_xpaf1")
 patrol_state = NodePath("../Patrol")
+chase_state = NodePath("../Chase")
 idle_wait = NodePath("IdleWait")
 
 [node name="IdleWait" type="Timer" parent="StateMachine/Idle" unique_id=1993647230]
 wait_time = 4.0
 one_shot = true
 
-[node name="Patrol" type="Node" parent="StateMachine" unique_id=1904688254 node_paths=PackedStringArray("idle_state")]
+[node name="Patrol" type="Node" parent="StateMachine" unique_id=1904688254 node_paths=PackedStringArray("idle_state", "chase_state")]
 script = ExtResource("7_dl872")
 idle_state = NodePath("../Idle")
+chase_state = NodePath("../Chase")
+
+[node name="Chase" type="Node" parent="StateMachine" unique_id=135549549 node_paths=PackedStringArray("idle_state")]
+script = ExtResource("8_dl872")
+idle_state = NodePath("../Idle")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=2061106403]
+
+[node name="PlayerLookRay" type="RayCast2D" parent="." unique_id=1506562719]
