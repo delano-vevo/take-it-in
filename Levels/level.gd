@@ -5,6 +5,7 @@ extends Node2D
 ## Signals
 signal out_of_time ## Emitted when the level timer runs out
 signal level_end ## Emitted when the player exits the level via the door
+signal do_thievery ## Emitted when a LootObject triggers the Thievery minigame
 
 ## Editor nodes
 @export var navmesh: NavigationRegion2D ## The level's navigation mesh
@@ -25,3 +26,7 @@ func _on_level_timer_timeout() -> void:
 ## Handle level exit signal from the level's door
 func _on_level_end() -> void:
 	level_end.emit()
+
+## Handles looted signals from various LootObjects
+func _on_object_looted() -> void:
+	do_thievery.emit()

@@ -41,7 +41,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_jynvv"]
 resource_name = "caught"
-length = 0.39999999999999997
+length = 0.4
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -267,6 +267,7 @@ animation = &"idle_up"
 animation = &"idle_down"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_t38ms"]
+blend_mode = 1
 blend_point_0/node = SubResource("AnimationNodeAnimation_ww0jn")
 blend_point_0/pos = Vector2(1, 0)
 blend_point_0/name = &"idle_right"
@@ -293,6 +294,7 @@ animation = &"run_up"
 animation = &"run_down"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_hj1c0"]
+blend_mode = 1
 blend_point_0/node = SubResource("AnimationNodeAnimation_t38ms")
 blend_point_0/pos = Vector2(1, 0)
 blend_point_0/name = &"run_right"
@@ -326,7 +328,7 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(-92, -42)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_e5kic"]
-graph_offset = Vector2(-217, 121)
+graph_offset = Vector2(-249, 101)
 nodes/MoveStateMachine/node = SubResource("AnimationNodeStateMachine_lmeus")
 nodes/MoveStateMachine/position = Vector2(-100, 140)
 node_connections = [&"output", 0, &"MoveStateMachine"]

@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c87tbcgwjtk3" path="res://Environment/LevelTiles.tscn" id="3_fhqol"]
 [ext_resource type="PackedScene" uid="uid://cdswg4i0ii2w5" path="res://Levels/LevelExit.tscn" id="4_iotdp"]
 [ext_resource type="PackedScene" uid="uid://rrcjv7q3caks" path="res://Entities/Player/Player.tscn" id="5_nutv8"]
+[ext_resource type="PackedScene" uid="uid://c62oxfm1pnduf" path="res://Environment/LootSources/LootDisplayCase.tscn" id="6_05pb0"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_iotdp"]
 vertices = PackedVector2Array(234, 154, 234, 54, 262, 102, 262, 214, 42, 214, 86, 154, 42, 102, 74, 74, 294, 26, 294, 102, 26, 26, 198, 54, 198, 118, 122, 118, 122, 90, 186, 90, 186, 54, 74, 38, 26, 102, 26, 74, 26, 38, 86, 54)
@@ -50,5 +51,9 @@ position = Vector2(152, 16)
 [node name="Player" parent="." unique_id=1364859685 instance=ExtResource("5_nutv8")]
 position = Vector2(152, 36)
 
+[node name="LootDisplayCase" parent="." unique_id=234735297 instance=ExtResource("6_05pb0")]
+position = Vector2(136, 112)
+
 [connection signal="timeout" from="LevelTimer" to="." method="_on_level_timer_timeout"]
 [connection signal="level_end" from="LevelExit" to="." method="_on_level_end"]
+[connection signal="looted" from="LootDisplayCase" to="." method="_on_object_looted"]

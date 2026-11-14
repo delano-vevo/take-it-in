@@ -55,6 +55,7 @@ func start_level(level_tscn: PackedScene) -> void:
 	# Connect signals
 	current_level.out_of_time.connect(_on_out_of_time)
 	current_level.level_end.connect(_on_level_end)
+	current_level.do_thievery.connect(do_thievery)
 	current_level.player.game_over.connect(_on_game_over)
 	# Set up the UI elements
 	gameplay_ui.visible = true
