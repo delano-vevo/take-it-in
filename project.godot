@@ -26,6 +26,8 @@ window/stretch/scale=3.0
 [global_group]
 
 goodies=""
+navigation_polygon_source_geometry_group=""
+enemies=""
 
 [input]
 

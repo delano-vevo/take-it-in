@@ -6,7 +6,7 @@ size = Vector2(16, 16)
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_c55ln"]
 polygon = PackedVector2Array(0, 0, 16, 0, 16, 16, 0, 16)
 
-[node name="Wall" type="StaticBody2D" unique_id=676972316]
+[node name="Wall" type="StaticBody2D" unique_id=676972316 groups=["navigation_polygon_source_geometry_group"]]
 
 [node name="Polygon2D" type="Polygon2D" parent="." unique_id=1874840401]
 color = Color(0, 0, 0, 1)
