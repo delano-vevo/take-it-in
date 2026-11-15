@@ -20,6 +20,8 @@ offset = Vector2(26, 0)
 hframes = 2
 
 [node name="HandArea" type="Area2D" parent="HandSprite" unique_id=1960062190]
+collision_layer = 2
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HandSprite/HandArea" unique_id=426790262]
 position = Vector2(22, 0)

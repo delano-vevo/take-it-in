@@ -8,7 +8,14 @@
 radius = 6.0
 height = 128.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gq3in"]
+size = Vector2(4, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c55ln"]
+size = Vector2(8, 26)
+
 [node name="ThiefBag" type="Area2D" unique_id=1923026651]
+collision_mask = 9
 script = ExtResource("1_tlidt")
 
 [node name="BackSprite" type="Sprite2D" parent="." unique_id=1033199616]
@@ -25,5 +32,17 @@ offset = Vector2(0, -24)
 position = Vector2(2, -14)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_4wlj2")
+
+[node name="BagSideLeft" type="StaticBody2D" parent="." unique_id=742401325]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BagSideLeft" unique_id=294125972]
+position = Vector2(-60, -14)
+shape = SubResource("RectangleShape2D_gq3in")
+
+[node name="BagSideRight" type="StaticBody2D" parent="." unique_id=787435008]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BagSideRight" unique_id=976224356]
+position = Vector2(62, -11)
+shape = SubResource("RectangleShape2D_c55ln")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
