@@ -3,15 +3,26 @@ extends Node2D
 ## Responsible for scene handling and controlling the gameplay "flow"
 
 ## Resource loads
+const player_tscn: PackedScene = preload("res://Entities/Player/Player.tscn")
 const thievery_tscn: PackedScene = preload("res://Thievery/Thievery.tscn")
+const game_over_tscn: PackedScene = preload("res://GUI/Screens/GameOverScreen.tscn")
+const bounty_failed_tscn: PackedScene = preload("res://GUI/Screens/BountyFailedScreen.tscn")
+const level_end_tscn: PackedScene = preload("res://GUI/Screens/LevelEndScreen.tscn")
+const sirens_fx: PackedScene = preload("res://VFX/SirenFlash.tscn")
+
+## Constants
+## Contains an array of String paths to all levels
+const levels: Array[String] = [
+	"res://Levels/Level1.tscn"
+]
 
 ## Editor nodes
 @export var ui_layer: CanvasLayer ## The layer responsible for rendering fixed UI elements over the game
 @export var thievery_layer: CanvasLayer ## The layer responsible for rendering the Thievery minigame
-@export var timer_ui: Control ## The UI node responsible for displaying the level timer
-@export var money_ui: Control ## The UI node responsible for displaying the player's current money
-@export var level_timer: Timer ## The actual Timer node responsible for the level time
-@export var player: Entity ## The player
+@export var gameplay_ui: Control ## The Control node that houses the gameplay UI elements
+@export var game_over_timer: Timer ## A timer that provides some offset between a game over trigger and the actual game over screen to make the flow less jarring
+@export var level_timer: Timer ## A Timer that controls the level timeout game over state
+@export var level_select_ui: Control ## The Control node housing the level select menu; exposed to the editor for setup
 
 ## Gameplay variables
 @export var current_level: Node2D ## Exposed to the editor so that levels can be hotswapped for testing
@@ -19,21 +30,43 @@ const thievery_tscn: PackedScene = preload("res://Thievery/Thievery.tscn")
 
 ## Initialize game
 func _ready() -> void:
+	get_tree().paused = true
 	# Set the window clear color to match palette
 	RenderingServer.set_default_clear_color(Color("a75252"))
-	# Initialize UI elements
-	money_ui.set_money(0)
-	# Pass player reference to all enemies
-	for enemy in get_tree().get_nodes_in_group("enemies"):
-		enemy.player = player
 
 ## Game loop
 func _process(delta: float) -> void:
 	# Update the timer UI
-	timer_ui.set_time(level_timer.time_left)
+	if (current_level != null): # Don't do this when a level isn't loaded
+		gameplay_ui.timer_ui.set_time(level_timer.time_left)
 	# Debug inputs
 	if (Input.is_action_just_pressed("debug_1")):
 		do_thievery()
+	#if (Input.is_action_just_pressed("debug_2")):
+	#	money = current_level.bounty
+
+## Starts a Level based on the provided path
+func start_level(level_tscn: PackedScene) -> void:
+	# Remove the current level, if necessary
+	if (current_level != null):
+		current_level.queue_free()
+	# Add the new level to the scene tree
+	current_level = level_tscn.instantiate()
+	add_child(current_level)
+	# Connect signals
+	current_level.level_end.connect(_on_level_end)
+	current_level.do_thievery.connect(do_thievery)
+	current_level.player.game_over.connect(_on_game_over)
+	# Set up the timer
+	level_timer.start(current_level.level_time)
+	# Set up the UI elements
+	gameplay_ui.visible = true
+	gameplay_ui.money_ui.set_money(0, current_level.bounty)
+	# Unpause the game
+	get_tree().paused = false
+	# Pass player reference to all enemies
+	for enemy in get_tree().get_nodes_in_group("enemies"):
+		enemy.player = current_level.player
 
 ## Triggers a Thievery event
 func do_thievery() -> void:
@@ -43,15 +76,50 @@ func do_thievery() -> void:
 	thievery.thievery_done.connect(_on_thievery_done)
 	thievery.get_money.connect(_on_money_get)
 	remove_child(current_level) # Remove the current level from the scene tree, but keep it loaded in memory
-	remove_child(player)
-
+## Triggered on the end of a Thievery event
 func _on_thievery_done() -> void:
 	add_child(current_level) # Return the level from memory to the scene tree
-	add_child(player)
 
 ## Signal handler for when money is obtained
 func _on_money_get(amount: float) -> void:
 	money += amount
 	print("Total money: " + str(money))
 	# Update the UI element
-	money_ui.set_money(money)
+	gameplay_ui.money_ui.set_money(money, current_level.bounty)
+
+## Handler for a game over state caused by the level timer expiring
+func _on_out_of_time() -> void:
+	current_level.player.state_machine.set_state(current_level.player.state_machine.caught_state)
+	_on_game_over() # For now just pass it through to the generic game over handler but some specific FX for this would be cool eventually
+
+## Signal handler for game over state
+func _on_game_over() -> void:
+	if (game_over_timer.is_stopped()): # Avoid multiple concurrent game overs
+		game_over_timer.start()
+		var sirens = sirens_fx.instantiate()
+		ui_layer.add_child(sirens)
+
+## Process the actual game over screen after timer delay
+func _on_game_over_timer_timeout() -> void:
+	get_tree().paused = true
+	var game_over = game_over_tscn.instantiate()
+	game_over.restart_game.connect(_on_restart)
+	ui_layer.add_child(game_over)
+
+## Called when a player hits Try again from the game over screen
+func _on_restart() -> void:
+	print("Restarting the game")
+	# TODO: hook this up to the actual level loader eventually
+	get_tree().reload_current_scene()
+
+## Called when the level signals the player has taken the exit door to leave
+func _on_level_end() -> void:
+	get_tree().paused = true
+	# Check to see if the bounty was met
+	if (money >= current_level.bounty):
+		var level_end = level_end_tscn.instantiate()
+		ui_layer.add_child(level_end)
+	else:
+		var bounty_failed = bounty_failed_tscn.instantiate()
+		bounty_failed.restart_game.connect(_on_restart)
+		ui_layer.add_child(bounty_failed)

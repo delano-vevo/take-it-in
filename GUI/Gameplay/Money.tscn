@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://bqhay07opq2lv"]
+
+[ext_resource type="Script" uid="uid://5q6fjdv8bytx" path="res://GUI/Gameplay/money.gd" id="1_ry8jb"]
+
+[node name="Money" type="Control" unique_id=1474558034 node_paths=PackedStringArray("money_label", "bounty_label")]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("1_ry8jb")
+money_label = NodePath("HBoxContainer/MoneyLabel")
+bounty_label = NodePath("HBoxContainer/BountyLabel")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1411761879]
+custom_minimum_size = Vector2(320, 40)
+layout_mode = 0
+offset_left = -328.0
+offset_top = -48.0
+offset_right = -8.0
+offset_bottom = -8.0
+pivot_offset = Vector2(40, 40)
+alignment = 2
+
+[node name="MoneyLabel" type="Label" parent="HBoxContainer" unique_id=953427745]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8117647, 0.47058824, 0.38431373, 1)
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 2
+
+[node name="Slash" type="Label" parent="HBoxContainer" unique_id=1249788966]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8117647, 0.47058824, 0.38431373, 1)
+theme_override_font_sizes/font_size = 20
+text = "/"
+horizontal_alignment = 2
+
+[node name="BountyLabel" type="Label" parent="HBoxContainer" unique_id=1593235852]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8117647, 0.47058824, 0.38431373, 1)
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 2

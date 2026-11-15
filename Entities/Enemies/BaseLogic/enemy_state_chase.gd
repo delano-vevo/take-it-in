@@ -20,9 +20,11 @@ func physics_process(delta: float, parent: Entity) -> State:
 	if (parent.look_for_player()):
 		# Update facing in parent to keep looking at the player
 		parent.facing = rad_to_deg(parent.global_position.angle_to_point(parent.player.global_position))
-		last_seen_position = parent.player.global_position
+		# Make sure the player position is a legal coordinate in the navigation polygon for the level
+		if (parent.level.is_point_in_navmesh(parent.player.global_position)):
+			last_seen_position = parent.player.global_position
 	# Check if the enemy has yet reached the last seen position
-	if (parent.global_position.distance_to(last_seen_position) > parent.chase_speed * delta):
+	if (parent.global_position.distance_to(last_seen_position) > (parent.chase_speed * delta)+1): # Small offset here to prevent weirdness around floating point calculations not properly triggering idle state
 		# Invoke the NavigationAgent in the Enemy to path to the next patrol point
 		parent.nav_agent.target_position = last_seen_position
 		var move_dir = parent.global_position.direction_to(parent.nav_agent.get_next_path_position())

@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://cdswg4i0ii2w5"]
+
+[ext_resource type="Script" uid="uid://byy2mnrvwlovf" path="res://Levels/level_exit.gd" id="1_cmea7"]
+[ext_resource type="Texture2D" uid="uid://ci55ggymeqbjt" path="res://Environment/Assets/door.png" id="2_2g7kl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2g7kl"]
+size = Vector2(14, 13)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c55ln"]
+radius = 12.0415945
+
+[node name="LevelExit" type="Area2D" unique_id=482110922 node_paths=PackedStringArray("door_sprite")]
+collision_mask = 3
+script = ExtResource("1_cmea7")
+door_sprite = NodePath("DoorSprite")
+
+[node name="DoorSprite" type="Sprite2D" parent="." unique_id=600161098]
+texture = ExtResource("2_2g7kl")
+offset = Vector2(0, -8)
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=367713737]
+position = Vector2(0, -9.5)
+shape = SubResource("RectangleShape2D_2g7kl")
+
+[node name="DoorOpenRange" type="Area2D" parent="." unique_id=132254326]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorOpenRange" unique_id=1778346823]
+position = Vector2(0, -4)
+shape = SubResource("CircleShape2D_c55ln")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="DoorOpenRange" to="." method="_on_door_open_range_body_entered"]
+[connection signal="body_exited" from="DoorOpenRange" to="." method="_on_door_open_range_body_exited"]

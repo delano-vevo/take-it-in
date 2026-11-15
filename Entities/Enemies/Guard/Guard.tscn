@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://bj8ilf2u7qr2" path="res://Entities/Enemies/BaseLogic/enemy_state_idle.gd" id="6_xpaf1"]
 [ext_resource type="Script" uid="uid://dxe8710shl248" path="res://Entities/Enemies/BaseLogic/enemy_state_patrol.gd" id="7_dl872"]
 [ext_resource type="Script" uid="uid://co1pdqx1iwxx6" path="res://Entities/Enemies/BaseLogic/enemy_state_chase.gd" id="8_dl872"]
+[ext_resource type="Script" uid="uid://bnda6qpafdew0" path="res://Entities/Enemies/Guard/guard_state_arrest.gd" id="9_8dkso"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vvg72"]
 radius = 4.0
@@ -481,9 +482,14 @@ nodes/MoveStateMachine/node = SubResource("AnimationNodeStateMachine_7wgl2")
 nodes/MoveStateMachine/position = Vector2(-40, 100)
 node_connections = [&"output", 0, &"MoveStateMachine"]
 
-[node name="Guard" type="CharacterBody2D" unique_id=1008242168 node_paths=PackedStringArray("nav_agent", "sight_ray", "state_machine", "animation_tree") groups=["enemies"]]
+[sub_resource type="CircleShape2D" id="CircleShape2D_dl872"]
+radius = 12.0
+
+[node name="Guard" type="CharacterBody2D" unique_id=1008242168 node_paths=PackedStringArray("nav_agent", "arrest_state", "sight_ray", "state_machine", "animation_tree") groups=["enemies"]]
+collision_layer = 2
 script = ExtResource("1_74ekp")
 nav_agent = NodePath("NavigationAgent2D")
+arrest_state = NodePath("StateMachine/Arrest")
 sight_ray = NodePath("PlayerLookRay")
 chase_speed = 80.0
 state_machine = NodePath("StateMachine")
@@ -542,6 +548,20 @@ chase_state = NodePath("../Chase")
 script = ExtResource("8_dl872")
 idle_state = NodePath("../Idle")
 
+[node name="Arrest" type="Node" parent="StateMachine" unique_id=397373237]
+script = ExtResource("9_8dkso")
+metadata/_custom_type_script = "uid://caljmcpadjor0"
+
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=2061106403]
 
 [node name="PlayerLookRay" type="RayCast2D" parent="." unique_id=1506562719]
+collision_mask = 3
+
+[node name="CatchArea" type="Area2D" parent="." unique_id=845107029]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CatchArea" unique_id=1608921884]
+shape = SubResource("CircleShape2D_dl872")
+
+[connection signal="body_entered" from="CatchArea" to="." method="_on_catch_area_body_entered"]

@@ -1,67 +1,52 @@
-[gd_scene format=3 uid="uid://cl3j8ys3euhdn"]
+[gd_scene format=4 uid="uid://cl3j8ys3euhdn"]
 
 [ext_resource type="Script" uid="uid://cs4ixfa7pmr8q" path="res://Levels/level.gd" id="1_fhqol"]
-[ext_resource type="PackedScene" uid="uid://brobwy7lfpdj8" path="res://Environment/Wall.tscn" id="1_w77jt"]
 [ext_resource type="PackedScene" uid="uid://dpyjy1eev83g3" path="res://Entities/Enemies/Guard/Guard.tscn" id="2_3anf8"]
+[ext_resource type="PackedScene" uid="uid://c87tbcgwjtk3" path="res://Environment/LevelTiles.tscn" id="3_fhqol"]
+[ext_resource type="PackedScene" uid="uid://cdswg4i0ii2w5" path="res://Levels/LevelExit.tscn" id="4_iotdp"]
+[ext_resource type="PackedScene" uid="uid://rrcjv7q3caks" path="res://Entities/Player/Player.tscn" id="5_nutv8"]
+[ext_resource type="PackedScene" uid="uid://c62oxfm1pnduf" path="res://Environment/LootSources/LootDisplayCase.tscn" id="6_05pb0"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_c55ln"]
-vertices = PackedVector2Array(263, 50.640625, 263, 193.02344, 237, 133.79688, 237, 57.976563, 303, 25, 303, 193.02344, 297, 193.02344, 297, 50.640625, 37.75, 25, 203, 57.976563, 182.11719, 55, 203, 119, 121, 119, 121, 89, 182.11719, 89, 106.00781, 55, 106.00781, 57.976563, 87, 57.976563, 37.75, 215, 87, 133.79688, 102.796875, 215, 94.24219, 153, 103.4375, 193.02344, 94.24219, 133.79688, 229.60156, 153, 229.60156, 133.79688, 103.4375, 230, 102.796875, 230)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(8, 4, 7, 0), PackedInt32Array(8, 0, 3, 9, 10), PackedInt32Array(11, 12, 13, 14), PackedInt32Array(9, 11, 14, 10), PackedInt32Array(8, 10, 15), PackedInt32Array(15, 16, 17, 8), PackedInt32Array(18, 8, 17, 19), PackedInt32Array(20, 18, 19, 21, 22), PackedInt32Array(19, 23, 21), PackedInt32Array(24, 25, 2, 1), PackedInt32Array(24, 1, 22, 21), PackedInt32Array(20, 22, 26, 27)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(0, 0, 328, 0, 328, 240, 0, 240)])
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_iotdp"]
+vertices = PackedVector2Array(234, 154, 234, 54, 262, 102, 262, 214, 42, 214, 86, 154, 42, 102, 74, 74, 294, 26, 294, 102, 26, 26, 198, 54, 198, 118, 122, 118, 122, 90, 186, 90, 186, 54, 74, 38, 26, 102, 26, 74, 26, 38, 86, 54)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(0, 3, 4, 5), PackedInt32Array(5, 4, 6, 7), PackedInt32Array(8, 9, 2, 1), PackedInt32Array(10, 8, 1, 11), PackedInt32Array(12, 13, 14, 15), PackedInt32Array(11, 12, 15, 16), PackedInt32Array(10, 11, 16, 17), PackedInt32Array(6, 18, 19, 7), PackedInt32Array(17, 20, 10), PackedInt32Array(17, 16, 21), PackedInt32Array(7, 17, 21, 5)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(0, 0, 320, 0, 320, 240, 0, 240)])
 source_geometry_mode = 2
 
-[node name="Level1" type="Node2D" unique_id=792643418]
+[node name="Level1" type="Node2D" unique_id=792643418 node_paths=PackedStringArray("navmesh", "player")]
+process_mode = 1
+y_sort_enabled = true
 script = ExtResource("1_fhqol")
+navmesh = NodePath("NavigationRegion2D")
+player = NodePath("Player")
+bounty = 100.0
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=1625386280]
+navigation_polygon = SubResource("NavigationPolygon_iotdp")
+metadata/_edit_lock_ = true
 
 [node name="Floor" type="Polygon2D" parent="." unique_id=868716719]
 color = Color(0.654902, 0.32156864, 0.32156864, 1)
 polygon = PackedVector2Array(0, 0, 320, 0, 320, 240, 0, 240)
 
-[node name="Walls" type="Node2D" parent="." unique_id=1832339978]
-
-[node name="Wall" parent="Walls" unique_id=676972316 instance=ExtResource("1_w77jt")]
-position = Vector2(96, 128)
-scale = Vector2(8.239999, 1)
-
-[node name="Wall2" parent="Walls" unique_id=789522874 instance=ExtResource("1_w77jt")]
-position = Vector2(96.00001, 200)
-scale = Vector2(17.437311, 3.0172372)
-
-[node name="Wall3" parent="Walls" unique_id=1142280897 instance=ExtResource("1_w77jt")]
-position = Vector2(96, 64)
-scale = Vector2(1, 3.9864519)
-
-[node name="Wall4" parent="Walls" unique_id=1811844434 instance=ExtResource("1_w77jt")]
-position = Vector2(212, 64)
-scale = Vector2(1, 3.9864519)
-
-[node name="Wall5" parent="Walls" unique_id=1198485615 instance=ExtResource("1_w77jt")]
-position = Vector2(112, 64)
-scale = Vector2(4.0077214, 1)
-
-[node name="Wall6" parent="Walls" unique_id=1933121984 instance=ExtResource("1_w77jt")]
-scale = Vector2(1.8499438, 14.970319)
-
-[node name="Wall7" parent="Walls" unique_id=1607898885 instance=ExtResource("1_w77jt")]
-position = Vector2(28, 224)
-scale = Vector2(4.3199997, 1)
-
-[node name="Wall8" parent="Walls" unique_id=1111500459 instance=ExtResource("1_w77jt")]
-position = Vector2(272, 50)
-scale = Vector2(1, 10.639998)
-
-[node name="Wall9" parent="Walls" unique_id=303591013 instance=ExtResource("1_w77jt")]
-position = Vector2(312, 0)
-scale = Vector2(1, 12.679998)
-
-[node name="Wall10" parent="Walls" unique_id=2074992271 instance=ExtResource("1_w77jt")]
-scale = Vector2(19.64, 1)
-
 [node name="Enemies" type="Node2D" parent="." unique_id=1527932540]
 
-[node name="Guard" parent="Enemies" unique_id=1008242168 instance=ExtResource("2_3anf8")]
+[node name="Guard" parent="Enemies" unique_id=1008242168 node_paths=PackedStringArray("level") instance=ExtResource("2_3anf8")]
 position = Vector2(76, 176)
-patrol_path = Array[Vector2]([Vector2(76, 176), Vector2(254, 176), Vector2(254, 48), Vector2(254, 176)])
+level = NodePath("../..")
+patrol_path = Array[Vector2]([Vector2(76, 176), Vector2(244, 176), Vector2(244, 48), Vector2(244, 176)])
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=1625386280]
-navigation_polygon = SubResource("NavigationPolygon_c55ln")
+[node name="LevelTiles" parent="." unique_id=1201900110 instance=ExtResource("3_fhqol")]
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAHAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAALAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAANAAAAAAAAAAAAAAAOAAAAAAAAAAAAAAAPAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAARAAAAAAAAAAAAAAASAAAAAAAAAAAAAAATAAAAAAAAAAAAAAATAAIAAAAAAAAAAAATAAEAAAAAAAAAAAATAAMAAAAAAAAAAAATAAQAAAAAAAAAAAATAAUAAAAAAAAAAAATAAYAAAAAAAAAAAATAAcAAAAAAAAAAAATAAgAAAAAAAAAAAATAAkAAAAAAAAAAAATAAoAAAAAAAAAAAATAAsAAAAAAAAAAAATAAwAAAAAAAAAAAATAA0AAAAAAAAAAAATAA4AAAAAAAAAAAASAA4AAAAAAAAAAAARAA4AAAAAAAAAAAAQAA4AAAAAAAAAAAAPAA4AAAAAAAAAAAAOAA4AAAAAAAAAAAANAA4AAAAAAAAAAAAMAA4AAAAAAAAAAAALAA4AAAAAAAAAAAAKAA4AAAAAAAAAAAAJAA4AAAAAAAAAAAAIAA4AAAAAAAAAAAAHAA4AAAAAAAAAAAAGAA4AAAAAAAAAAAAFAA4AAAAAAAAAAAAEAA4AAAAAAAAAAAADAA4AAAAAAAAAAAACAA4AAAAAAAAAAAABAA4AAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA0AAAAAAAAAAAAAAAwAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAEAAAAAAAAAAAAKAAQAAAAAAAAAAAAJAAQAAAAAAAAAAAAIAAQAAAAAAAAAAAAHAAQAAAAAAAAAAAAGAAQAAAAAAAAAAAAGAAUAAAAAAAAAAAAGAAYAAAAAAAAAAAAGAAcAAAAAAAAAAAAGAAgAAAAAAAAAAAAHAAgAAAAAAAAAAAAIAAgAAAAAAAAAAAAJAAgAAAAAAAAAAAAKAAgAAAAAAAAAAAALAAgAAAAAAAAAAAAMAAgAAAAAAAAAAAANAAgAAAAAAAAAAAANAAcAAAAAAAAAAAANAAYAAAAAAAAAAAANAAUAAAAAAAAAAAANAAQAAAAAAAAAAAARAA0AAAAAAAAAAAARAAwAAAAAAAAAAAARAAsAAAAAAAAAAAARAAoAAAAAAAAAAAARAAkAAAAAAAAAAAARAAgAAAAAAAAAAAARAAcAAAAAAAAAAAABAA0AAAAAAAAAAAABAAwAAAAAAAAAAAABAAsAAAAAAAAAAAABAAoAAAAAAAAAAAABAAkAAAAAAAAAAAABAAgAAAAAAAAAAAABAAcAAAAAAAAAAAABAAMAAAAAAAAAAAACAAMAAAAAAAAAAAADAAMAAAAAAAAAAAA=")
+
+[node name="LevelExit" parent="." unique_id=482110922 instance=ExtResource("4_iotdp")]
+position = Vector2(152, 16)
+
+[node name="Player" parent="." unique_id=1364859685 instance=ExtResource("5_nutv8")]
+position = Vector2(152, 36)
+
+[node name="LootDisplayCase" parent="." unique_id=234735297 instance=ExtResource("6_05pb0")]
+position = Vector2(136, 112)
+
+[connection signal="level_end" from="LevelExit" to="." method="_on_level_end"]
+[connection signal="looted" from="LootDisplayCase" to="." method="_on_object_looted"]

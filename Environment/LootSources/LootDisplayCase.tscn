@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://c62oxfm1pnduf"]
+
+[ext_resource type="Script" uid="uid://cxn5qm054aipx" path="res://Environment/LootSources/loot_source.gd" id="1_pq4vy"]
+[ext_resource type="Texture2D" uid="uid://ldeyducq16bm" path="res://Environment/Assets/loot_display_case.png" id="1_velgj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c55ln"]
+size = Vector2(10, 6)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c55ln"]
+radius = 16.0
+
+[node name="LootDisplayCase" type="StaticBody2D" unique_id=234735297 node_paths=PackedStringArray("interact_prompt", "obj_sprite") groups=["navigation_polygon_source_geometry_group"]]
+script = ExtResource("1_pq4vy")
+interact_prompt = NodePath("InteractPrompt")
+obj_sprite = NodePath("Sprite2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=876320050]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_c55ln")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1061928525]
+texture = ExtResource("1_velgj")
+offset = Vector2(0, -8)
+hframes = 2
+
+[node name="InteractArea" type="Area2D" parent="." unique_id=148872751]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea" unique_id=1514165952]
+position = Vector2(0, -8)
+shape = SubResource("CircleShape2D_c55ln")
+
+[node name="InteractPrompt" type="ColorRect" parent="." unique_id=1843972600]
+visible = false
+offset_left = -19.0
+offset_top = -31.0
+offset_right = 20.0
+offset_bottom = -20.0
+color = Color(0.8117647, 0.47058824, 0.38431373, 1)
+
+[node name="Label" type="Label" parent="InteractPrompt" unique_id=1366102385]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.23921569, 0.1254902, 0.23137255, 1)
+theme_override_font_sizes/font_size = 12
+text = "SPACE"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[connection signal="body_entered" from="InteractArea" to="." method="_on_interact_area_body_entered"]
+[connection signal="body_exited" from="InteractArea" to="." method="_on_interact_area_body_exited"]
