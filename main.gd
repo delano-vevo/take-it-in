@@ -21,6 +21,7 @@ const levels: Array[String] = [
 @export var thievery_layer: CanvasLayer ## The layer responsible for rendering the Thievery minigame
 @export var gameplay_ui: Control ## The Control node that houses the gameplay UI elements
 @export var game_over_timer: Timer ## A timer that provides some offset between a game over trigger and the actual game over screen to make the flow less jarring
+@export var level_timer: Timer ## A Timer that controls the level timeout game over state
 @export var level_select_ui: Control ## The Control node housing the level select menu; exposed to the editor for setup
 
 ## Gameplay variables
@@ -37,7 +38,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	# Update the timer UI
 	if (current_level != null): # Don't do this when a level isn't loaded
-		gameplay_ui.timer_ui.set_time(current_level.level_timer.time_left)
+		gameplay_ui.timer_ui.set_time(level_timer.time_left)
 	# Debug inputs
 	if (Input.is_action_just_pressed("debug_1")):
 		do_thievery()
@@ -49,14 +50,15 @@ func start_level(level_tscn: PackedScene) -> void:
 	# Remove the current level, if necessary
 	if (current_level != null):
 		current_level.queue_free()
-	# Add the new level to the scene tree and put the player in it
+	# Add the new level to the scene tree
 	current_level = level_tscn.instantiate()
 	add_child(current_level)
 	# Connect signals
-	current_level.out_of_time.connect(_on_out_of_time)
 	current_level.level_end.connect(_on_level_end)
 	current_level.do_thievery.connect(do_thievery)
 	current_level.player.game_over.connect(_on_game_over)
+	# Set up the timer
+	level_timer.start(current_level.level_time)
 	# Set up the UI elements
 	gameplay_ui.visible = true
 	gameplay_ui.money_ui.set_money(0, current_level.bounty)

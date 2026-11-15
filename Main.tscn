@@ -10,13 +10,15 @@ tonemap_mode = 3
 glow_intensity = 0.2
 glow_strength = 0.8
 
-[node name="Main" type="Node2D" unique_id=571149764 node_paths=PackedStringArray("ui_layer", "thievery_layer", "gameplay_ui", "game_over_timer")]
+[node name="Main" type="Node2D" unique_id=571149764 node_paths=PackedStringArray("ui_layer", "thievery_layer", "gameplay_ui", "game_over_timer", "level_timer", "level_select_ui")]
 process_mode = 3
 script = ExtResource("1_glv2v")
 ui_layer = NodePath("UILayer")
 thievery_layer = NodePath("ThieveryLayer")
 gameplay_ui = NodePath("UILayer/GameplayUI")
 game_over_timer = NodePath("GameOverTimer")
+level_timer = NodePath("LevelTimer")
+level_select_ui = NodePath("UILayer/LevelSelect")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1560649801]
 environment = SubResource("Environment_c55ln")
@@ -36,9 +38,13 @@ visible = false
 [node name="ThieveryLayer" type="CanvasLayer" parent="." unique_id=2023257996]
 layer = 500
 
+[node name="LevelTimer" type="Timer" parent="." unique_id=908846100]
+one_shot = true
+
 [node name="GameOverTimer" type="Timer" parent="." unique_id=446763999]
 wait_time = 3.0
 one_shot = true
 
 [connection signal="level_selected" from="UILayer/LevelSelect" to="." method="start_level"]
+[connection signal="timeout" from="LevelTimer" to="." method="_on_out_of_time"]
 [connection signal="timeout" from="GameOverTimer" to="." method="_on_game_over_timer_timeout"]
