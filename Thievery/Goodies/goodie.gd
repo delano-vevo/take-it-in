@@ -2,33 +2,42 @@ class_name Goodie
 extends RigidBody2D
 ## Implements a generic goodie/trinket/bauble/etc. that the player can grab for money in the thievery minigame
 
+## Constants
+const DRAG_STRENGTH: float = 10.0 ## Strength with which the player hand drags the goodies
+const MOUSE_DAMPING: float = 0.25 ## Damping applied to mouse_velocity on release
+
 ## Gameplay variables
 @export var money_amount: float = 1.0 ## The amount of money this particular goodie is worth
 @onready var position_offset: Vector2 ## An offset value set when this object is grabbed to determine manual positioning
 @onready var hand: Sprite2D ## Keeps a reference to the Hand sprite from TheifHand controller for positional code while grabbed
-
-## Initialize
-func _ready() -> void:
-	# TODO: decide what freeze mode to use after further testing
-	pass#freeze_mode = FREEZE_MODE_KINEMATIC
+@onready var is_grabbed: bool ## Maintains a boolean indicating whether the object is currently grabbed
+@onready var is_released: bool = false ## Boolean that flips for a frame on object release; useful for physics code
 
 ## Game loop
-#func _integrate_forces(state) -> void:
-func _physics_process(delta: float) -> void:
-	if (freeze):
-		# Override physics with manual position based on hand offset
-		var targ_position: Vector2 = hand.global_position + position_offset
-		global_transform.origin = targ_position
+## Grab code is handled in _integrate_forces() to retain physics properties while grabbing
+func _integrate_forces(state: PhysicsDirectBodyState2D) -> void: 
+	if (is_grabbed):
+		# Apply a dragging effect on grabbed, while maintaining physics state otherwise
+		var lin_vel = global_position.direction_to(hand.global_position + position_offset)
+		lin_vel *= global_position.distance_to(hand.global_position + position_offset)
+		linear_velocity = lin_vel * DRAG_STRENGTH
+	elif (is_released):
+		# Zero out the velocity and apply last mouse velocity instead
+		linear_velocity = Input.get_last_mouse_velocity() * MOUSE_DAMPING
+		is_released = false # Flip the released flag back
 
 ## Called when grabbed by the hand
 func grabbed(grab_hand: Sprite2D) -> void:
 	hand = grab_hand # Save reference
-	freeze = true
+	is_grabbed = true
+	is_released = false
 	# Capture position offset
 	position_offset = global_position - hand.global_position
 
 ## Called when released by the hand
 func released() -> void:
-	if (freeze):
+	if (is_grabbed):
+		#linear_velocity = Vector2.ZERO
 		apply_central_impulse(Input.get_last_mouse_velocity())
-		freeze = false
+		is_grabbed = false
+		is_released = true

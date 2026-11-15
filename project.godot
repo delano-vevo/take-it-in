@@ -81,10 +81,12 @@ loot={
 2d_physics/layer_1="Environment"
 2d_physics/layer_2="Entities"
 2d_physics/layer_3="Interactables"
+2d_physics/layer_4="Goodies"
 
 [physics]
 
 3d/physics_engine="Jolt Physics"
+2d/default_gravity=1280.0
 
 [rendering]
 
