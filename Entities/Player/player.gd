@@ -7,6 +7,7 @@ signal game_over ## Signal to Main that the player dun got caught
 
 ## Editor nodes
 @export var animation_player: AnimationPlayer ## Used to call special state animations
+@export var camera: Camera2D ## The camera responsible for following the player
 @export var crying_particles_l: GPUParticles2D ## The particle effects for the player weeping when caught
 @export var crying_particles_r: GPUParticles2D
 

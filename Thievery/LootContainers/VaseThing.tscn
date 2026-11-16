@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://d0ertbwirf2v4"]
+
+[ext_resource type="Texture2D" uid="uid://cu45xfnmy5baa" path="res://Thievery/Assets/vase_thing.png" id="1_ljyu2"]
+
+[node name="VaseThing" type="StaticBody2D" unique_id=1609208046]
+z_index = -1
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1642858124]
+z_index = -2
+position = Vector2(0, -27.100006)
+texture = ExtResource("1_ljyu2")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=702999512]
+position = Vector2(0, -27.100006)
+polygon = PackedVector2Array(28, -80, 28, -76, 38, -68, 44, -68, 72, -15, 72, 5, 52, 78, -51, 78, -72, 5, -72, -15, -44, -68, -38, -68, -28, -76, -28, -81, -32, -81, -32, -77, -39, -72, -45, -72, -51, -66, -76, -15, -76, 6, -54, 82, 54, 82, 76, 5, 76, -16, 50, -66, 45, -72, 40, -72, 32, -77, 32, -81)

@@ -8,7 +8,9 @@ const menu_level_tscn: PackedScene = preload("res://GUI/Screens/LevelSelect/Menu
 ## Constants
 ## Contains String paths to all Level scenes in the game
 const levels: Array[String] = [
-	"res://Levels/Level1.tscn"
+	"res://Levels/Level1.tscn",
+	"res://Levels/Level2.tscn",
+	"res://Levels/Level3.tscn",
 ]
 
 ## Signals
@@ -18,6 +20,8 @@ signal level_selected(level: PackedScene) ## Emitted when a MenuLevel is picked 
 @export var level_container: HBoxContainer ## The container that holds all the buttons for Levels
 @export var level_info: Control ## The outer Control node housing the level overview info
 @export var bounty_label: Label ## The Label that displays the bounty for the selected level
+@export var security_label: Label ## The Label that displays the security for the selected level
+@export var size_label: Label ## The Label that displays size data for the selected level
 
 ## Internal variables
 @onready var current_level: PackedScene = null ## Maintains a loaded PackedScene resource corresponding to the selected level
@@ -30,6 +34,7 @@ func _ready() -> void:
 		print(level)
 		var menu_level = menu_level_tscn.instantiate()
 		menu_level.level = load(level)
+		menu_level.level_path = level
 		menu_level.button.text = str(i)
 		menu_level.level_selected.connect(_on_level_selected)
 		level_container.add_child(menu_level)
@@ -43,6 +48,8 @@ func _on_level_selected(level: PackedScene) -> void:
 	var selected_level: Level = level.instantiate()
 	# Set the level property data in the UI
 	bounty_label.set_text("Bounty: $%.2f" % selected_level.bounty)
+	security_label.set_text("Security level: " + Global.SECURITY_LEVELS[selected_level.security_level])
+	size_label.set_text("Area size: " + Global.LEVEL_SIZES[selected_level.level_size])
 	# Show the level property UI
 	level_info.visible = true
 	# Delete the level with the information extracted

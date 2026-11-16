@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cf8vk782t2sh2"]
+
+[ext_resource type="Texture2D" uid="uid://cqol3wxw33y2l" path="res://Thievery/Assets/big_jug.png" id="1_pyg25"]
+
+[node name="BigJug" type="StaticBody2D" unique_id=485113416]
+z_index = -1
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=922779725]
+z_index = -2
+texture = ExtResource("1_pyg25")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=327322284]
+polygon = PackedVector2Array(-72, 52, -69, 54, -52, 58, -18, 61, 18, 61, 46, 59, 64, 56, 72, 52, 86, -64, 90, -64, 76, 54, 64, 60, 27, 65, -24, 65, -70, 58, -76, 54, -90, -64, -86, -64)

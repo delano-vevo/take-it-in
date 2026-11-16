@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bdowxt3rx0ww8" path="res://GUI/Screens/LevelSelect/level_select.gd" id="1_eki6v"]
 
-[node name="LevelSelect" type="Control" unique_id=719140048 node_paths=PackedStringArray("level_container", "level_info", "bounty_label")]
+[node name="LevelSelect" type="Control" unique_id=719140048 node_paths=PackedStringArray("level_container", "level_info", "bounty_label", "security_label", "size_label")]
 process_mode = 2
 layout_mode = 3
 anchors_preset = 15
@@ -13,7 +13,9 @@ grow_vertical = 2
 script = ExtResource("1_eki6v")
 level_container = NodePath("VBoxContainer/LevelScroll/LevelContainer")
 level_info = NodePath("VBoxContainer/LevelInfo")
-bounty_label = NodePath("VBoxContainer/LevelInfo/BountyLabel")
+bounty_label = NodePath("VBoxContainer/LevelInfo/LevelData/BountyLabel")
+security_label = NodePath("VBoxContainer/LevelInfo/LevelData/SecurityLabel")
+size_label = NodePath("VBoxContainer/LevelInfo/LevelData/SizeLabel")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=335514795]
 custom_minimum_size = Vector2(320, 0)
@@ -61,10 +63,29 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.32941177, 0.19607843, 0.27450982, 1)
 
-[node name="BountyLabel" type="Label" parent="VBoxContainer/LevelInfo" unique_id=38717497]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="LevelData" type="VBoxContainer" parent="VBoxContainer/LevelInfo" unique_id=1856225090]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 9.0
+offset_right = -8.0
+offset_bottom = -45.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BountyLabel" type="Label" parent="VBoxContainer/LevelInfo/LevelData" unique_id=38717497]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="SecurityLabel" type="Label" parent="VBoxContainer/LevelInfo/LevelData" unique_id=743851738]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="SizeLabel" type="Label" parent="VBoxContainer/LevelInfo/LevelData" unique_id=1847123755]
+layout_mode = 2
+horizontal_alignment = 1
 
 [node name="LevelSelect" type="Button" parent="VBoxContainer/LevelInfo" unique_id=481579029]
 layout_mode = 1
