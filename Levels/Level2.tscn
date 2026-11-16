@@ -1,0 +1,71 @@
+[gd_scene format=4 uid="uid://bii6tl3q3mhjw"]
+
+[ext_resource type="Script" uid="uid://cs4ixfa7pmr8q" path="res://Levels/level.gd" id="1_m3ha0"]
+[ext_resource type="PackedScene" uid="uid://dpyjy1eev83g3" path="res://Entities/Enemies/Guard/Guard.tscn" id="2_vd23k"]
+[ext_resource type="PackedScene" uid="uid://c87tbcgwjtk3" path="res://Environment/LevelTiles.tscn" id="3_x7rwe"]
+[ext_resource type="PackedScene" uid="uid://cdswg4i0ii2w5" path="res://Levels/LevelExit.tscn" id="4_lf2mf"]
+[ext_resource type="PackedScene" uid="uid://rrcjv7q3caks" path="res://Entities/Player/Player.tscn" id="5_80cou"]
+[ext_resource type="PackedScene" uid="uid://c62oxfm1pnduf" path="res://Environment/LootSources/LootDisplayCase.tscn" id="6_xosfc"]
+[ext_resource type="PackedScene" uid="uid://b1kuhw0j3fy3u" path="res://Thievery/LootPools/VaseInstance.tscn" id="7_mbiy8"]
+[ext_resource type="PackedScene" uid="uid://dcmkfty4mb7n6" path="res://Thievery/LootPools/BowlInstance.tscn" id="8_tweqo"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_iotdp"]
+vertices = PackedVector2Array(230, 118, 230, 214, 218, 170, 218, 134, 26, 214, 86, 170, 86, 134, 26, 106, 74, 106, 122, 106, 122, 26, 182, 26, 182, 106, 218, 26, 294, 26, 294, 70, 230, 70, 218, 106, 230, 106, 294, 106, 294, 118, 74, 70, 26, 70, 26, 26, 86, 26, 86, 106)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(2, 1, 4, 5), PackedInt32Array(6, 5, 4, 7, 8), PackedInt32Array(9, 10, 11, 12), PackedInt32Array(13, 14, 15, 16), PackedInt32Array(17, 13, 16, 18), PackedInt32Array(18, 19, 20, 0), PackedInt32Array(17, 18, 0, 3), PackedInt32Array(21, 22, 23, 24), PackedInt32Array(21, 24, 25, 8), PackedInt32Array(6, 8, 25), PackedInt32Array(6, 25, 9, 3), PackedInt32Array(3, 9, 12), PackedInt32Array(3, 12, 17)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(0, 0, 320, 0, 320, 240, 0, 240)])
+source_geometry_mode = 2
+
+[node name="Level2" type="Node2D" unique_id=792643418 node_paths=PackedStringArray("navmesh", "player")]
+process_mode = 1
+y_sort_enabled = true
+script = ExtResource("1_m3ha0")
+navmesh = NodePath("NavigationRegion2D")
+player = NodePath("Player")
+bounty = 125.0
+level_path = "res://Levels/Level2.tscn"
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=1625386280]
+navigation_polygon = SubResource("NavigationPolygon_iotdp")
+metadata/_edit_lock_ = true
+
+[node name="Floor" type="Polygon2D" parent="." unique_id=868716719]
+color = Color(0.654902, 0.32156864, 0.32156864, 1)
+polygon = PackedVector2Array(0, 0, 320, 0, 320, 240, 0, 240)
+
+[node name="Enemies" type="Node2D" parent="." unique_id=1527932540]
+
+[node name="Guard" parent="Enemies" unique_id=1008242168 node_paths=PackedStringArray("level") instance=ExtResource("2_vd23k")]
+position = Vector2(76, 176)
+level = NodePath("../..")
+patrol_path = Array[Vector2]([Vector2(76, 176), Vector2(244, 176), Vector2(244, 48), Vector2(244, 176)])
+
+[node name="LevelTiles" parent="." unique_id=1201900110 instance=ExtResource("3_x7rwe")]
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAHAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAALAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAANAAAAAAAAAAAAAAAOAAAAAAAAAAAAAAAPAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAARAAAAAAAAAAAAAAASAAAAAAAAAAAAAAATAAAAAAAAAAAAAAATAAIAAAAAAAAAAAATAAEAAAAAAAAAAAATAAMAAAAAAAAAAAATAAQAAAAAAAAAAAATAAUAAAAAAAAAAAATAAYAAAAAAAAAAAATAAcAAAAAAAAAAAATAAgAAAAAAAAAAAATAAkAAAAAAAAAAAATAAoAAAAAAAAAAAATAAsAAAAAAAAAAAATAAwAAAAAAAAAAAATAA0AAAAAAAAAAAATAA4AAAAAAAAAAAASAA4AAAAAAAAAAAARAA4AAAAAAAAAAAAQAA4AAAAAAAAAAAAPAA4AAAAAAAAAAAAOAA4AAAAAAAAAAAANAA4AAAAAAAAAAAAMAA4AAAAAAAAAAAALAA4AAAAAAAAAAAAKAA4AAAAAAAAAAAAJAA4AAAAAAAAAAAAIAA4AAAAAAAAAAAAHAA4AAAAAAAAAAAAGAA4AAAAAAAAAAAAFAA4AAAAAAAAAAAAEAA4AAAAAAAAAAAADAA4AAAAAAAAAAAACAA4AAAAAAAAAAAABAA4AAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA0AAAAAAAAAAAAAAAwAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAEAAAAAAAAAAAAGAAEAAAAAAAAAAAAGAAIAAAAAAAAAAAAGAAMAAAAAAAAAAAAGAAQAAAAAAAAAAAAGAAUAAAAAAAAAAAAMAAEAAAAAAAAAAAAMAAIAAAAAAAAAAAAMAAMAAAAAAAAAAAAMAAQAAAAAAAAAAAAMAAUAAAAAAAAAAAAPAAUAAAAAAAAAAAAQAAUAAAAAAAAAAAARAAUAAAAAAAAAAAASAAUAAAAAAAAAAAADAAUAAAAAAAAAAAACAAUAAAAAAAAAAAABAAUAAAAAAAAAAAAPAA0AAAAAAAAAAAAPAAwAAAAAAAAAAAAPAAsAAAAAAAAAAAAPAAoAAAAAAAAAAAAPAAkAAAAAAAAAAAAPAAgAAAAAAAAAAAAQAAgAAAAAAAAAAAARAAgAAAAAAAAAAAASAAgAAAAAAAAAAAASAAkAAAAAAAAAAAASAAoAAAAAAAAAAAASAAsAAAAAAAAAAAASAAwAAAAAAAAAAAASAA0AAAAAAAAAAAARAA0AAAAAAAAAAAAQAA0AAAAAAAAAAAAQAAwAAAAAAAAAAAAQAAsAAAAAAAAAAAAQAAoAAAAAAAAAAAAQAAkAAAAAAAAAAAARAAkAAAAAAAAAAAARAAoAAAAAAAAAAAARAAsAAAAAAAAAAAARAAwAAAAAAAAAAAAMAAkAAAAAAAAAAAALAAkAAAAAAAAAAAAKAAkAAAAAAAAAAAAJAAkAAAAAAAAAAAAIAAkAAAAAAAAAAAAHAAkAAAAAAAAAAAAGAAkAAAAAAAAAAAA=")
+
+[node name="LevelExit" parent="." unique_id=482110922 instance=ExtResource("4_lf2mf")]
+position = Vector2(152, 16)
+
+[node name="Player" parent="." unique_id=1364859685 instance=ExtResource("5_80cou")]
+position = Vector2(152, 36)
+
+[node name="LootDisplayCase" parent="." unique_id=234735297 instance=ExtResource("6_xosfc")]
+position = Vector2(37, 54)
+loot_instance_tscn = ExtResource("8_tweqo")
+
+[node name="LootDisplayCase2" parent="." unique_id=788354450 instance=ExtResource("6_xosfc")]
+position = Vector2(283, 55)
+loot_instance_tscn = ExtResource("8_tweqo")
+
+[node name="LootDisplayCase3" parent="." unique_id=339927406 instance=ExtResource("6_xosfc")]
+position = Vector2(110, 215)
+loot_instance_tscn = ExtResource("7_mbiy8")
+
+[node name="LootDisplayCase4" parent="." unique_id=355560697 instance=ExtResource("6_xosfc")]
+position = Vector2(199, 215)
+loot_instance_tscn = ExtResource("7_mbiy8")
+
+[connection signal="level_end" from="LevelExit" to="." method="_on_level_end"]
+[connection signal="looted" from="LootDisplayCase" to="." method="_on_object_looted"]
+[connection signal="looted" from="LootDisplayCase2" to="." method="_on_object_looted"]
+[connection signal="looted" from="LootDisplayCase3" to="." method="_on_object_looted"]
+[connection signal="looted" from="LootDisplayCase4" to="." method="_on_object_looted"]

@@ -72,6 +72,8 @@ func start_level(level_tscn: PackedScene) -> void:
 func do_thievery() -> void:
 	print("Initiating diabolical thievery!")
 	var thievery = thievery_tscn.instantiate()
+	#var thievery_instance = instance_tscn.instantiate()
+	#thievery.add_child(thievery_instance)
 	thievery_layer.add_child(thievery)
 	thievery.thievery_done.connect(_on_thievery_done)
 	thievery.get_money.connect(_on_money_get)
@@ -117,6 +119,9 @@ func _on_level_end() -> void:
 	get_tree().paused = true
 	# Check to see if the bounty was met
 	if (money >= current_level.bounty):
+		# Set the flag for level cleared in Global
+		Global.levels_cleared[current_level.level_path] = true
+		# Put up the end-of-level success screen
 		var level_end = level_end_tscn.instantiate()
 		ui_layer.add_child(level_end)
 	else:

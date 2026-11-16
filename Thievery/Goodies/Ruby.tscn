@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://ce030lvvslm60"]
+
+[ext_resource type="Script" uid="uid://gtyq7bep6amb" path="res://Thievery/Goodies/goodie.gd" id="1_8f147"]
+[ext_resource type="Texture2D" uid="uid://864qee1s7du4" path="res://Thievery/Assets/ruby.png" id="2_pumpc"]
+
+[node name="Ruby" type="RigidBody2D" unique_id=1302996315 groups=["goodies"]]
+collision_layer = 8
+collision_mask = 9
+script = ExtResource("1_8f147")
+money_amount = 10.0
+metadata/_custom_type_script = "uid://gtyq7bep6amb"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1724482802]
+texture = ExtResource("2_pumpc")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=661964925]
+polygon = PackedVector2Array(0, -15, 7, -8, 7, 8, 0, 14, -7, 8, -7, -8)

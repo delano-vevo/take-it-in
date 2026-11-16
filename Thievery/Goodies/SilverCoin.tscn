@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://xh27fmyp40ic"]
+
+[ext_resource type="Script" uid="uid://gtyq7bep6amb" path="res://Thievery/Goodies/goodie.gd" id="1_a8m1c"]
+[ext_resource type="Texture2D" uid="uid://dkxer1fk5lotn" path="res://Thievery/Assets/silver_coin.png" id="2_otmre"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a8m1c"]
+
+[node name="SilverCoin" type="RigidBody2D" unique_id=771817083 groups=["goodies"]]
+collision_layer = 8
+collision_mask = 9
+script = ExtResource("1_a8m1c")
+metadata/_custom_type_script = "uid://gtyq7bep6amb"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1889501857]
+texture = ExtResource("2_otmre")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=519005739]
+shape = SubResource("CircleShape2D_a8m1c")

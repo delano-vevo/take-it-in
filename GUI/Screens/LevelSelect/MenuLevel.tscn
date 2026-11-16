@@ -1,12 +1,14 @@
 [gd_scene format=3 uid="uid://bfsg5mx8yoxg"]
 
 [ext_resource type="Script" uid="uid://crm5118ngsep5" path="res://GUI/Screens/LevelSelect/menu_level.gd" id="1_aa0js"]
+[ext_resource type="Texture2D" uid="uid://dj8emcgvebua6" path="res://GUI/Assets/level_clear_checkmark.png" id="2_ln5d6"]
 
-[node name="MenuLevel" type="ColorRect" unique_id=187450197 node_paths=PackedStringArray("button")]
+[node name="MenuLevel" type="ColorRect" unique_id=187450197 node_paths=PackedStringArray("button", "cleared_checkmark")]
 custom_minimum_size = Vector2(40, 40)
 color = Color(0.32941177, 0.19607843, 0.27450982, 1)
 script = ExtResource("1_aa0js")
 button = NodePath("SelectButton")
+cleared_checkmark = NodePath("TextureRect")
 
 [node name="SelectButton" type="Button" parent="." unique_id=156221538]
 custom_minimum_size = Vector2(32, 32)
@@ -17,5 +19,15 @@ offset_top = 4.0
 offset_right = 36.0
 offset_bottom = 36.0
 theme_override_font_sizes/font_size = 12
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1152926311]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ln5d6")
 
 [connection signal="pressed" from="SelectButton" to="." method="_on_select_button_pressed"]

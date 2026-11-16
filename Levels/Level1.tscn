@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://cdswg4i0ii2w5" path="res://Levels/LevelExit.tscn" id="4_iotdp"]
 [ext_resource type="PackedScene" uid="uid://rrcjv7q3caks" path="res://Entities/Player/Player.tscn" id="5_nutv8"]
 [ext_resource type="PackedScene" uid="uid://c62oxfm1pnduf" path="res://Environment/LootSources/LootDisplayCase.tscn" id="6_05pb0"]
+[ext_resource type="PackedScene" uid="uid://b1kuhw0j3fy3u" path="res://Thievery/LootPools/VaseInstance.tscn" id="7_dl8mf"]
+[ext_resource type="PackedScene" uid="uid://dcmkfty4mb7n6" path="res://Thievery/LootPools/BowlInstance.tscn" id="8_xcayt"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_iotdp"]
 vertices = PackedVector2Array(234, 154, 234, 54, 262, 102, 262, 214, 42, 214, 86, 154, 42, 102, 74, 74, 294, 26, 294, 102, 26, 26, 198, 54, 198, 118, 122, 118, 122, 90, 186, 90, 186, 54, 74, 38, 26, 102, 26, 74, 26, 38, 86, 54)
@@ -20,6 +22,7 @@ script = ExtResource("1_fhqol")
 navmesh = NodePath("NavigationRegion2D")
 player = NodePath("Player")
 bounty = 100.0
+level_path = "res://Levels/Level1.tscn"
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=1625386280]
 navigation_polygon = SubResource("NavigationPolygon_iotdp")
@@ -47,6 +50,17 @@ position = Vector2(152, 36)
 
 [node name="LootDisplayCase" parent="." unique_id=234735297 instance=ExtResource("6_05pb0")]
 position = Vector2(136, 112)
+loot_instance_tscn = ExtResource("7_dl8mf")
+
+[node name="LootDisplayCase2" parent="." unique_id=1820981075 instance=ExtResource("6_05pb0")]
+position = Vector2(280, 104)
+loot_instance_tscn = ExtResource("8_xcayt")
+
+[node name="LootDisplayCase3" parent="." unique_id=1657849251 instance=ExtResource("6_05pb0")]
+position = Vector2(280, 104)
+loot_instance_tscn = ExtResource("8_xcayt")
 
 [connection signal="level_end" from="LevelExit" to="." method="_on_level_end"]
 [connection signal="looted" from="LootDisplayCase" to="." method="_on_object_looted"]
+[connection signal="looted" from="LootDisplayCase2" to="." method="_on_object_looted"]
+[connection signal="looted" from="LootDisplayCase3" to="." method="_on_object_looted"]
