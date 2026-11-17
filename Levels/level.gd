@@ -5,6 +5,8 @@ extends Node2D
 ## Signals
 signal level_end ## Emitted when the player exits the level via the door
 signal do_thievery ## Emitted when a LootObject triggers the Thievery minigame
+signal player_spotted ## Emitted when the player is spotted by a guard
+signal player_safe ## Emitted when the player successfully evades all guards pursuing them
 
 ## Editor nodes
 @export var navmesh: NavigationRegion2D ## The level's navigation mesh
@@ -20,8 +22,13 @@ signal do_thievery ## Emitted when a LootObject triggers the Thievery minigame
 
 ## Initialize
 func _ready() -> void:
+	# Set the camera bounds
 	player.camera.limit_right = int(level_bounds.x)
 	player.camera.limit_bottom = int(level_bounds.y)
+	# Hook up signals from guards
+	for enemy in get_tree().get_nodes_in_group("enemies"):
+		enemy.player_spotted.connect(_on_player_spotted)
+		enemy.player_lost.connect(_on_player_lost)
 
 ## Checks whether a given point is in this level's navigation region
 func is_point_in_navmesh(point: Vector2) -> bool:
@@ -34,3 +41,19 @@ func _on_level_end() -> void:
 ## Handles looted signals from various LootObjects
 func _on_object_looted() -> void:
 	do_thievery.emit()
+
+## Handles player_spotted signals from individual guards
+func _on_player_spotted() -> void:
+	player_spotted.emit()
+
+## Handles lost_player signals from individual guards
+func _on_player_lost(which_enemy: Enemy) -> void:
+	print("Lost the player...")
+	var player_lost: bool = true
+	for enemy in get_tree().get_nodes_in_group("enemies"):
+		if (enemy.state_machine.current_state == enemy.state_machine.chase_state and enemy != which_enemy):
+			print("Enemy: " + str(enemy) + " is in the chase state: " + str(enemy.state_machine.current_state))
+			player_lost = false
+	if (player_lost):
+		print("The player is safe!")
+		player_safe.emit()

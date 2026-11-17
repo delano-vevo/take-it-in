@@ -9,8 +9,8 @@ extends Entity
 @export var sight_ray: RayCast2D ## The RayCast used to detect line of sight to the player
 
 ## Gameplay variables
-@export var max_look_range: float = 100.0 ## The maximum distance at which the guard will "spot" the player
-@export var max_look_angle: float = 60.0 ## The maximum angle, in degrees, that the player can be away from the enemy's facing direction and still be detected
+@export var max_look_range: float = 200.0 ## The maximum distance at which the guard will "spot" the player
+@export var max_look_angle: float = 80.0 ## The maximum angle, in degrees, that the player can be away from the enemy's facing direction and still be detected
 @export var chase_speed: float = 100.0 ## The speed at which the enemy runs when pursuing the player
 
 ## Internal variables

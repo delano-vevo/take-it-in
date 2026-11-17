@@ -22,9 +22,11 @@ signal get_money(amount: float) ## Propagated from ThiefBag to pass to Main
 
 ## Editor nodes
 @export var hand: Node2D
+@export var loot_sfx: AudioStreamPlayer ## Audio player for the SFX on loot
 
 ## Initialize - randomize loot and container
 func _ready() -> void:
+	loot_sfx.playing = true
 	var loot_container: StaticBody2D = loot_containers[randi_range(0,loot_containers.size()-1)].instantiate()
 	var loot_pool: Node2D = loot_pools[randi_range(0,loot_pools.size()-1)].instantiate()
 	loot_container.global_position = CONTAINER_POSITION

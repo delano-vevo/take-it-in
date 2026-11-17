@@ -7,8 +7,8 @@ const MUTE_VOLUME: float = -60.0 ## Target volume when a stream is muted
 const FADE_TIME: float = 1.0 ## The time (in seconds) a track will take to fade in or out
 
 ## Internal variables
-@onready var shaker_volume: float = MUTE_VOLUME
-@onready var drum_volume: float = MUTE_VOLUME
+@onready var shaker_volume: float = REGULAR_VOLUME
+@onready var drum_volume: float = REGULAR_VOLUME
 @onready var bassline_volume: float = MUTE_VOLUME
 @onready var melody_volume: float = MUTE_VOLUME
 

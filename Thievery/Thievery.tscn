@@ -2,11 +2,13 @@
 
 [ext_resource type="Script" uid="uid://cvynv2aoubbr0" path="res://Thievery/thievery.gd" id="1_bq0t3"]
 [ext_resource type="PackedScene" uid="uid://1150m22xglg0" path="res://Thievery/ThiefHand.tscn" id="1_qlvgc"]
+[ext_resource type="AudioStream" uid="uid://ckmg7pnw3s3nc" path="res://SFX/case_smashed.wav" id="4_5w44m"]
 [ext_resource type="PackedScene" uid="uid://3fh3qrokvyjq" path="res://Thievery/ThiefBag.tscn" id="5_cgip7"]
 
-[node name="Thievery" type="Node2D" unique_id=990197385 node_paths=PackedStringArray("hand")]
+[node name="Thievery" type="Node2D" unique_id=990197385 node_paths=PackedStringArray("hand", "loot_sfx")]
 script = ExtResource("1_bq0t3")
 hand = NodePath("ThiefHand")
+loot_sfx = NodePath("AudioStreamPlayer")
 
 [node name="Background" type="Polygon2D" parent="." unique_id=108282921]
 z_index = -100
@@ -34,6 +36,10 @@ offset_top = 32.0
 offset_right = 107.0
 offset_bottom = 63.0
 text = "Let's Split!"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=699891477]
+process_mode = 3
+stream = ExtResource("4_5w44m")
 
 [connection signal="get_money" from="ThiefBag" to="." method="_on_thief_bag_get_money"]
 [connection signal="pressed" from="ThieveryUI/Button" to="." method="_on_button_pressed"]

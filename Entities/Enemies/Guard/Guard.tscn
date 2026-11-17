@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://dxe8710shl248" path="res://Entities/Enemies/BaseLogic/enemy_state_patrol.gd" id="7_dl872"]
 [ext_resource type="Script" uid="uid://co1pdqx1iwxx6" path="res://Entities/Enemies/BaseLogic/enemy_state_chase.gd" id="8_dl872"]
 [ext_resource type="Script" uid="uid://bnda6qpafdew0" path="res://Entities/Enemies/Guard/guard_state_arrest.gd" id="9_8dkso"]
+[ext_resource type="AudioStream" uid="uid://b4ix2tsp1o0mf" path="res://SFX/player_spotted.wav" id="10_xh4ja"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vvg72"]
 radius = 4.0
@@ -477,7 +478,6 @@ states/Walk/position = Vector2(524, 82)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_cj1nq"), "Idle", "End", SubResource("AnimationNodeStateMachineTransition_vo3ts"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_s77cr"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_5fnqn")]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_c55ln"]
-graph_offset = Vector2(-395, 79)
 nodes/MoveStateMachine/node = SubResource("AnimationNodeStateMachine_7wgl2")
 nodes/MoveStateMachine/position = Vector2(-40, 100)
 node_connections = [&"output", 0, &"MoveStateMachine"]
@@ -485,12 +485,14 @@ node_connections = [&"output", 0, &"MoveStateMachine"]
 [sub_resource type="CircleShape2D" id="CircleShape2D_dl872"]
 radius = 12.0
 
-[node name="Guard" type="CharacterBody2D" unique_id=1008242168 node_paths=PackedStringArray("nav_agent", "arrest_state", "sight_ray", "state_machine", "animation_tree") groups=["enemies"]]
+[node name="Guard" type="CharacterBody2D" unique_id=1008242168 node_paths=PackedStringArray("nav_agent", "arrest_state", "alert_sfx", "sight_ray", "state_machine", "animation_tree") groups=["enemies"]]
 collision_layer = 2
 script = ExtResource("1_74ekp")
 nav_agent = NodePath("NavigationAgent2D")
 arrest_state = NodePath("StateMachine/Arrest")
+alert_sfx = NodePath("AlertSound")
 sight_ray = NodePath("PlayerLookRay")
+max_look_range = 160.0
 chase_speed = 80.0
 state_machine = NodePath("StateMachine")
 animation_tree = NodePath("AnimationTree")
@@ -525,10 +527,13 @@ offset = Vector2(64, 0)
 [node name="BodyLight" type="PointLight2D" parent="." unique_id=2100920241]
 texture = ExtResource("4_bhsw5")
 
-[node name="StateMachine" type="Node" parent="." unique_id=998238081 node_paths=PackedStringArray("current_state", "parent")]
+[node name="StateMachine" type="Node" parent="." unique_id=998238081 node_paths=PackedStringArray("current_state", "parent", "patrol_state", "chase_state", "arrest_state")]
 script = ExtResource("5_b6mrl")
 current_state = NodePath("Idle")
 parent = NodePath("..")
+patrol_state = NodePath("Patrol")
+chase_state = NodePath("Chase")
+arrest_state = NodePath("Arrest")
 
 [node name="Idle" type="Node" parent="StateMachine" unique_id=676996974 node_paths=PackedStringArray("patrol_state", "chase_state", "idle_wait")]
 script = ExtResource("6_xpaf1")
@@ -564,5 +569,9 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CatchArea" unique_id=1608921884]
 shape = SubResource("CircleShape2D_dl872")
+
+[node name="AlertSound" type="AudioStreamPlayer" parent="." unique_id=534586344]
+stream = ExtResource("10_xh4ja")
+volume_db = -4.0
 
 [connection signal="body_entered" from="CatchArea" to="." method="_on_catch_area_body_entered"]

@@ -62,11 +62,15 @@ func start_level(level_tscn: PackedScene) -> void:
 	current_level.level_end.connect(_on_level_end)
 	current_level.do_thievery.connect(do_thievery)
 	current_level.player.game_over.connect(_on_game_over)
+	current_level.player_spotted.connect(_on_player_spotted)
+	current_level.player_safe.connect(_on_player_safe)
 	# Set up the timer
 	level_timer.start(current_level.level_time)
 	# Set up the UI elements
 	gameplay_ui.visible = true
 	gameplay_ui.money_ui.set_money(0, current_level.bounty)
+	# Fade in the bassline
+	soundtrack.fade_in_track(Enum.AudioTracks.BASSLINE)
 	# Unpause the game
 	get_tree().paused = false
 	# Pass player reference to all enemies
@@ -132,3 +136,11 @@ func _on_level_end() -> void:
 		var bounty_failed = bounty_failed_tscn.instantiate()
 		bounty_failed.restart_game.connect(_on_restart)
 		ui_layer.add_child(bounty_failed)
+
+## Signalled when the player is spotted and pursued by a guard
+func _on_player_spotted() -> void:
+	soundtrack.fade_in_track(Enum.AudioTracks.MELODY)
+
+## Signalled when the player effectively evades their pursuers
+func _on_player_safe() -> void:
+	soundtrack.fade_out_track(Enum.AudioTracks.MELODY)

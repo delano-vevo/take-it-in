@@ -9,8 +9,13 @@ extends State
 @onready var last_seen_position: Vector2 ## The position to move towards - the last seen position of the player
 
 func state_entered(parent: Entity) -> void:
-	print("Chasin the player ooooh!")
+	# Play the walking animation
+	parent.move_playback.travel("Walk")
+	# TODO: swap this for a running animation if time permits
+	parent.player_spotted.emit()
+	print("Enemy: " + str(parent) + " spotted the player!")
 	# TODO: add a little graphic here to indicate the enemy has spotted the player (read: rip off MGS)
+	parent.alert_sfx.playing = true
 	# Capture the player's current position as the last seen position
 	last_seen_position = parent.player.global_position
 
@@ -39,6 +44,8 @@ func physics_process(delta: float, parent: Entity) -> State:
 	else:
 		# When the last seen position is reached, revert to idle state
 		parent.global_position = last_seen_position
+		print("Enemy: " + str(parent) + " lost the player!")
+		parent.player_lost.emit(parent)
 		return idle_state
 	# No exit conditions encountered - continue pursuit
 	return null
