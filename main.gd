@@ -23,6 +23,7 @@ const levels: Array[String] = [
 @export var game_over_timer: Timer ## A timer that provides some offset between a game over trigger and the actual game over screen to make the flow less jarring
 @export var level_timer: Timer ## A Timer that controls the level timeout game over state
 @export var level_select_ui: Control ## The Control node housing the level select menu; exposed to the editor for setup
+@export var soundtrack: AudioStreamPlayer ## The audio stream that handles the soundtrack
 
 ## Gameplay variables
 @export var current_level: Node2D ## Exposed to the editor so that levels can be hotswapped for testing
@@ -40,10 +41,14 @@ func _process(delta: float) -> void:
 	if (current_level != null): # Don't do this when a level isn't loaded
 		gameplay_ui.timer_ui.set_time(level_timer.time_left)
 	# Debug inputs
+	# Test out the audio tracks with the debug keys
 	if (Input.is_action_just_pressed("debug_1")):
-		do_thievery()
-	#if (Input.is_action_just_pressed("debug_2")):
-	#	money = current_level.bounty
+		soundtrack.fade_in_track(Enum.AudioTracks.SHAKERS)
+		soundtrack.fade_in_track(Enum.AudioTracks.DRUMLINE)
+	if (Input.is_action_just_pressed("debug_2")):
+		soundtrack.fade_in_track(Enum.AudioTracks.BASSLINE)
+	if (Input.is_action_just_pressed("debug_3")):
+		soundtrack.fade_in_track(Enum.AudioTracks.MELODY)
 
 ## Starts a Level based on the provided path
 func start_level(level_tscn: PackedScene) -> void:
@@ -57,11 +62,15 @@ func start_level(level_tscn: PackedScene) -> void:
 	current_level.level_end.connect(_on_level_end)
 	current_level.do_thievery.connect(do_thievery)
 	current_level.player.game_over.connect(_on_game_over)
+	current_level.player_spotted.connect(_on_player_spotted)
+	current_level.player_safe.connect(_on_player_safe)
 	# Set up the timer
 	level_timer.start(current_level.level_time)
 	# Set up the UI elements
 	gameplay_ui.visible = true
 	gameplay_ui.money_ui.set_money(0, current_level.bounty)
+	# Fade in the bassline
+	soundtrack.fade_in_track(Enum.AudioTracks.BASSLINE)
 	# Unpause the game
 	get_tree().paused = false
 	# Pass player reference to all enemies
@@ -72,8 +81,6 @@ func start_level(level_tscn: PackedScene) -> void:
 func do_thievery() -> void:
 	print("Initiating diabolical thievery!")
 	var thievery = thievery_tscn.instantiate()
-	#var thievery_instance = instance_tscn.instantiate()
-	#thievery.add_child(thievery_instance)
 	thievery_layer.add_child(thievery)
 	thievery.thievery_done.connect(_on_thievery_done)
 	thievery.get_money.connect(_on_money_get)
@@ -123,8 +130,17 @@ func _on_level_end() -> void:
 		Global.levels_cleared[current_level.level_path] = true
 		# Put up the end-of-level success screen
 		var level_end = level_end_tscn.instantiate()
+		level_end.restart_game.connect(_on_restart)
 		ui_layer.add_child(level_end)
 	else:
 		var bounty_failed = bounty_failed_tscn.instantiate()
 		bounty_failed.restart_game.connect(_on_restart)
 		ui_layer.add_child(bounty_failed)
+
+## Signalled when the player is spotted and pursued by a guard
+func _on_player_spotted() -> void:
+	soundtrack.fade_in_track(Enum.AudioTracks.MELODY)
+
+## Signalled when the player effectively evades their pursuers
+func _on_player_safe() -> void:
+	soundtrack.fade_out_track(Enum.AudioTracks.MELODY)

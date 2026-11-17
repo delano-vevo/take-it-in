@@ -8,6 +8,11 @@ extends Node
 ## MUST be assigned in the editor, or a runtime error will occur!
 @export var parent: Entity
 
+## State nodes
+@export var patrol_state: State
+@export var chase_state: State
+@export var arrest_state: State
+
 ## Initialize the current state with a state_entered call
 func init() -> void:
 	current_state.state_entered(parent)

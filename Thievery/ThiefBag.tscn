@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bhe0cj5cqdase" path="res://Thievery/thief_bag.gd" id="1_tlidt"]
 [ext_resource type="Texture2D" uid="uid://cpgvh2g3bgybq" path="res://Thievery/Assets/goodie_bag.png" id="2_4wlj2"]
 [ext_resource type="Texture2D" uid="uid://3anacrnvwh3q" path="res://Thievery/Assets/goodie_bag_front.png" id="3_gq3in"]
+[ext_resource type="AudioStream" uid="uid://c0furi01ije1m" path="res://SFX/get_money.wav" id="4_jivmp"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4wlj2"]
 radius = 6.0
@@ -14,9 +15,10 @@ size = Vector2(4, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c55ln"]
 size = Vector2(8, 26)
 
-[node name="ThiefBag" type="Area2D" unique_id=1923026651]
+[node name="ThiefBag" type="Area2D" unique_id=1923026651 node_paths=PackedStringArray("sfx")]
 collision_mask = 9
 script = ExtResource("1_tlidt")
+sfx = NodePath("AudioStreamPlayer")
 
 [node name="BackSprite" type="Sprite2D" parent="." unique_id=1033199616]
 z_index = -1
@@ -44,5 +46,9 @@ shape = SubResource("RectangleShape2D_gq3in")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BagSideRight" unique_id=976224356]
 position = Vector2(62, -11)
 shape = SubResource("RectangleShape2D_c55ln")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1761799857]
+stream = ExtResource("4_jivmp")
+volume_db = -6.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

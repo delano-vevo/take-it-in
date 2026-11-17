@@ -6,12 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://cdswg4i0ii2w5" path="res://Levels/LevelExit.tscn" id="4_xxxi4"]
 [ext_resource type="PackedScene" uid="uid://rrcjv7q3caks" path="res://Entities/Player/Player.tscn" id="5_4c4gq"]
 [ext_resource type="PackedScene" uid="uid://c62oxfm1pnduf" path="res://Environment/LootSources/LootDisplayCase.tscn" id="6_3e7p2"]
-[ext_resource type="PackedScene" uid="uid://dcmkfty4mb7n6" path="res://Thievery/LootPools/BowlInstance.tscn" id="7_dxjb0"]
-[ext_resource type="PackedScene" uid="uid://b1kuhw0j3fy3u" path="res://Thievery/LootPools/VaseInstance.tscn" id="8_hx0pg"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_iotdp"]
-vertices = PackedVector2Array(454, 214, 362, 214, 378, 170, 442, 74, 362, 182, 230, 170, 310, 182, 214, 225, 310, 266, 182, 278, 214, 199, 218, 170, 86, 170, 184, 199, 122, 106, 122, 26, 182, 26, 182, 106, 218, 26, 294, 26, 294, 39, 268, 39, 268, 65, 294, 65, 294, 70, 230, 70, 394, 106, 394, 74, 390, 38, 390, 70, 330, 70, 330, 26, 454, 26, 442, 38, 378, 118, 230, 106, 230, 118, 218, 134, 184, 225, 154, 230, 125, 225, 125, 199, 95, 199, 454, 266, 454, 342, 362, 342, 362, 326, 326, 326, 326, 342, 218, 342, 218, 314, 362, 314, 362, 278, 154, 266, 26, 342, 26, 266, 54, 266, 54, 330, 182, 342, 90, 330, 90, 266, 26, 230, 95, 225, 26, 106, 86, 134, 74, 106, 74, 70, 26, 70, 26, 64, 52, 64, 52, 38, 26, 38, 26, 26, 86, 26, 218, 106, 86, 106)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(2, 1, 4), PackedInt32Array(5, 2, 4, 6), PackedInt32Array(7, 6, 8, 9), PackedInt32Array(5, 6, 7, 10, 11), PackedInt32Array(12, 11, 10, 13), PackedInt32Array(14, 15, 16, 17), PackedInt32Array(18, 19, 20, 21), PackedInt32Array(22, 23, 24, 25), PackedInt32Array(26, 27, 3), PackedInt32Array(28, 29, 30, 31), PackedInt32Array(28, 31, 32, 33), PackedInt32Array(33, 32, 0, 3), PackedInt32Array(26, 3, 2, 34), PackedInt32Array(35, 26, 34, 36), PackedInt32Array(36, 5, 11, 37), PackedInt32Array(13, 38, 39, 40, 41), PackedInt32Array(12, 13, 41), PackedInt32Array(12, 41, 42), PackedInt32Array(43, 44, 45, 46), PackedInt32Array(47, 48, 49, 50), PackedInt32Array(47, 50, 51, 46), PackedInt32Array(43, 46, 51), PackedInt32Array(43, 51, 52), PackedInt32Array(8, 43, 52, 9), PackedInt32Array(38, 7, 9, 53, 39), PackedInt32Array(54, 55, 56, 57), PackedInt32Array(58, 54, 57, 59), PackedInt32Array(9, 58, 59, 60, 53), PackedInt32Array(40, 39, 61, 62), PackedInt32Array(42, 62, 61, 63, 12), PackedInt32Array(64, 12, 63, 65), PackedInt32Array(66, 67, 68, 69), PackedInt32Array(70, 71, 72, 73), PackedInt32Array(21, 22, 25, 18), PackedInt32Array(74, 18, 25, 35), PackedInt32Array(74, 35, 36, 37), PackedInt32Array(17, 74, 37, 64), PackedInt32Array(14, 17, 64), PackedInt32Array(75, 14, 64), PackedInt32Array(75, 64, 65), PackedInt32Array(73, 75, 65, 66), PackedInt32Array(70, 73, 66, 69)])
+vertices = PackedVector2Array(361, 68, 390, 70, 330, 70, 331, 68, 330, 26, 331, 42, 442, 74, 427, 198, 397, 198, 378, 170, 378, 118, 394, 106, 390, 38, 361, 42, 454, 26, 442, 38, 454, 214, 427, 214, 122, 106, 122, 26, 182, 26, 182, 106, 218, 26, 294, 26, 294, 44, 265, 44, 265, 70, 230, 70, 218, 106, 230, 106, 394, 74, 230, 118, 218, 134, 230, 170, 218, 170, 397, 214, 362, 214, 362, 182, 310, 182, 454, 266, 454, 342, 428, 342, 428, 324, 398, 324, 398, 342, 362, 342, 362, 326, 326, 326, 326, 342, 256, 342, 256, 322, 226, 322, 226, 342, 218, 342, 218, 314, 362, 314, 26, 342, 26, 266, 54, 266, 54, 330, 182, 342, 90, 330, 182, 278, 118, 298, 90, 298, 118, 272, 154, 266, 90, 272, 90, 266, 26, 230, 26, 106, 74, 106, 86, 134, 86, 170, 74, 70, 26, 70, 26, 68, 53, 68, 53, 42, 26, 42, 26, 26, 86, 26, 86, 106, 154, 230, 310, 266, 362, 278)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 2, 4, 5), PackedInt32Array(6, 7, 8, 9, 10, 11), PackedInt32Array(12, 1, 0, 13), PackedInt32Array(13, 5, 4, 14, 12), PackedInt32Array(15, 12, 14), PackedInt32Array(15, 14, 16, 6), PackedInt32Array(6, 16, 17, 7), PackedInt32Array(18, 19, 20, 21), PackedInt32Array(22, 23, 24, 25), PackedInt32Array(25, 26, 27, 22), PackedInt32Array(28, 22, 27, 29), PackedInt32Array(11, 30, 6), PackedInt32Array(29, 11, 10, 31), PackedInt32Array(28, 29, 31, 32), PackedInt32Array(31, 33, 34, 32), PackedInt32Array(8, 35, 36, 37, 9), PackedInt32Array(33, 9, 37, 38), PackedInt32Array(39, 40, 41, 42), PackedInt32Array(43, 44, 45, 46), PackedInt32Array(47, 48, 49, 50), PackedInt32Array(51, 52, 53, 54), PackedInt32Array(51, 54, 55, 50), PackedInt32Array(46, 47, 50, 55, 43), PackedInt32Array(56, 57, 58, 59), PackedInt32Array(60, 56, 59, 61), PackedInt32Array(62, 60, 61, 63), PackedInt32Array(61, 64, 63), PackedInt32Array(62, 63, 65, 66), PackedInt32Array(65, 67, 68, 66), PackedInt32Array(69, 70, 71, 72, 73), PackedInt32Array(74, 75, 76, 77), PackedInt32Array(78, 79, 80, 81), PackedInt32Array(74, 77, 78, 81), PackedInt32Array(74, 81, 82, 71), PackedInt32Array(21, 28, 32, 72), PackedInt32Array(18, 21, 72), PackedInt32Array(82, 18, 72), PackedInt32Array(71, 82, 72), PackedInt32Array(83, 69, 73, 34), PackedInt32Array(83, 34, 33, 38, 84, 62, 66), PackedInt32Array(42, 43, 55, 85, 39), PackedInt32Array(85, 62, 84, 39)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(0, 0, 480, 0, 480, 360, 0, 360)])
 source_geometry_mode = 2
 
@@ -52,28 +50,25 @@ position = Vector2(152, 16)
 position = Vector2(152, 36)
 
 [node name="LootDisplayCase" parent="." unique_id=234735297 instance=ExtResource("6_3e7p2")]
-position = Vector2(37, 54)
-loot_instance_tscn = ExtResource("7_dxjb0")
+position = Vector2(38, 58)
 
-[node name="LootDisplayCase2" parent="." unique_id=788354450 instance=ExtResource("6_3e7p2")]
-position = Vector2(283, 55)
-loot_instance_tscn = ExtResource("7_dxjb0")
+[node name="LootDisplayCase2" parent="." unique_id=216463647 instance=ExtResource("6_3e7p2")]
+position = Vector2(280, 60)
 
-[node name="LootDisplayCase3" parent="." unique_id=339927406 instance=ExtResource("6_3e7p2")]
-position = Vector2(110, 215)
-loot_instance_tscn = ExtResource("8_hx0pg")
+[node name="LootDisplayCase3" parent="." unique_id=1781469091 instance=ExtResource("6_3e7p2")]
+position = Vector2(346, 58)
 
-[node name="LootDisplayCase4" parent="." unique_id=355560697 instance=ExtResource("6_3e7p2")]
-position = Vector2(199, 215)
-loot_instance_tscn = ExtResource("8_hx0pg")
+[node name="LootDisplayCase4" parent="." unique_id=646468669 instance=ExtResource("6_3e7p2")]
+position = Vector2(412, 214)
 
-[node name="LootDisplayCase5" parent="." unique_id=1113941860 instance=ExtResource("6_3e7p2")]
-position = Vector2(243, 336)
-loot_instance_tscn = ExtResource("8_hx0pg")
+[node name="LootDisplayCase5" parent="." unique_id=84317434 instance=ExtResource("6_3e7p2")]
+position = Vector2(413, 340)
 
-[node name="LootDisplayCase6" parent="." unique_id=1489385494 instance=ExtResource("6_3e7p2")]
-position = Vector2(409, 145)
-loot_instance_tscn = ExtResource("7_dxjb0")
+[node name="LootDisplayCase6" parent="." unique_id=1404102042 instance=ExtResource("6_3e7p2")]
+position = Vector2(241, 338)
+
+[node name="LootDisplayCase7" parent="." unique_id=1775270258 instance=ExtResource("6_3e7p2")]
+position = Vector2(103, 288)
 
 [connection signal="level_end" from="LevelExit" to="." method="_on_level_end"]
 [connection signal="looted" from="LootDisplayCase" to="." method="_on_object_looted"]
@@ -82,3 +77,4 @@ loot_instance_tscn = ExtResource("7_dxjb0")
 [connection signal="looted" from="LootDisplayCase4" to="." method="_on_object_looted"]
 [connection signal="looted" from="LootDisplayCase5" to="." method="_on_object_looted"]
 [connection signal="looted" from="LootDisplayCase6" to="." method="_on_object_looted"]
+[connection signal="looted" from="LootDisplayCase7" to="." method="_on_object_looted"]

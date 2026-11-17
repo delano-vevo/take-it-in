@@ -10,6 +10,7 @@ extends State
 @export var idle_wait: Timer ## The Timer that controls how long the enemy idles for before moving on
 
 func state_entered(parent: Entity) -> void:
+	print("Enemy " + str(parent) + " is idling!")
 	# Play the idling animation in the parent Enemy
 	parent.move_playback.travel("Idle")
 	# Start the wait timer

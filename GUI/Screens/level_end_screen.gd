@@ -1,6 +1,8 @@
 extends Control
 ## Handles the UI for the screen displayed when the player exits a level
 
+signal restart_game
+
 func _ready() -> void:
 	# Tween modulate for a fade-in effect
 	modulate = Color(1,1,1,0)
@@ -9,4 +11,4 @@ func _ready() -> void:
 	mod_tween.tween_property(self, "modulate", Color.WHITE, 0.5)
 
 func _on_button_pressed() -> void:
-	pass # Replace with function body.
+	restart_game.emit()

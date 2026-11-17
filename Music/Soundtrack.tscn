@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cjeulrl3viqvm"]
+
+[ext_resource type="AudioStream" uid="uid://bryiiwikcww21" path="res://Music/shakers.wav" id="1_d65y4"]
+[ext_resource type="AudioStream" uid="uid://7md8hcdiwl05" path="res://Music/drum_line.wav" id="2_07ny2"]
+[ext_resource type="AudioStream" uid="uid://db2ts3ie46k5v" path="res://Music/bassline.wav" id="3_5fdma"]
+[ext_resource type="AudioStream" uid="uid://bfpcbtkb5ow1" path="res://Music/melody.wav" id="4_jli2a"]
+[ext_resource type="Script" uid="uid://dymdt8nchagkx" path="res://Music/soundtrack.gd" id="5_bjwb6"]
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_r0du0"]
+stream_count = 4
+stream_0/stream = ExtResource("1_d65y4")
+stream_0/volume = -60.0
+stream_1/stream = ExtResource("2_07ny2")
+stream_1/volume = -60.0
+stream_2/stream = ExtResource("3_5fdma")
+stream_2/volume = -60.0
+stream_3/stream = ExtResource("4_jli2a")
+stream_3/volume = -60.0
+
+[node name="Soundtrack" type="AudioStreamPlayer" unique_id=683008173]
+stream = SubResource("AudioStreamSynchronized_r0du0")
+autoplay = true
+script = ExtResource("5_bjwb6")

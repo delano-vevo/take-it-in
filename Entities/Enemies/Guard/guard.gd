@@ -1,10 +1,15 @@
 extends Enemy
 ## Implements a simple Guard type enemy with a flashlight and a basic patrol route
 
+## Signals
+signal player_spotted ## Triggered when the guard spots the player
+signal player_lost(enemy: Enemy) ## Triggered when the guard loses the player
+
 ## Editor nodes
 @export var nav_agent: NavigationAgent2D ## The NavigationAgent2D this will use to traverse the level
 @export var level: Level ## The level this enemy belongs to
 @export var arrest_state: State ## This should probably be in the FSM but who cares I'm not adding a whole script just for this
+@export var alert_sfx: AudioStreamPlayer ## Plays the Alert sound when the player is spotted
 
 ## Set the blend spaces for the guard's animations
 func set_blend_spaces(target: Vector2) -> void:
