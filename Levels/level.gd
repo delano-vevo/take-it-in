@@ -32,6 +32,5 @@ func _on_level_end() -> void:
 	level_end.emit()
 
 ## Handles looted signals from various LootObjects
-func _on_object_looted(instance: PackedScene) -> void:
-	print("Thievery time! " + str(instance))
+func _on_object_looted() -> void:
 	do_thievery.emit()

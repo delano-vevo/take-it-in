@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bi83orudkolxo" path="res://main.gd" id="1_glv2v"]
 [ext_resource type="PackedScene" uid="uid://b2bowdhqgv2y1" path="res://GUI/Gameplay/GameplayUI.tscn" id="4_cm0pq"]
+[ext_resource type="PackedScene" uid="uid://cjeulrl3viqvm" path="res://Music/Soundtrack.tscn" id="4_fos0i"]
 [ext_resource type="PackedScene" uid="uid://imbj5hk0dkd1" path="res://GUI/Screens/LevelSelect/LevelSelect.tscn" id="5_fos0i"]
 
 [sub_resource type="Environment" id="Environment_c55ln"]
@@ -10,7 +11,7 @@ tonemap_mode = 3
 glow_intensity = 0.2
 glow_strength = 0.8
 
-[node name="Main" type="Node2D" unique_id=571149764 node_paths=PackedStringArray("ui_layer", "thievery_layer", "gameplay_ui", "game_over_timer", "level_timer", "level_select_ui")]
+[node name="Main" type="Node2D" unique_id=571149764 node_paths=PackedStringArray("ui_layer", "thievery_layer", "gameplay_ui", "game_over_timer", "level_timer", "level_select_ui", "soundtrack")]
 process_mode = 3
 script = ExtResource("1_glv2v")
 ui_layer = NodePath("UILayer")
@@ -19,6 +20,7 @@ gameplay_ui = NodePath("UILayer/GameplayUI")
 game_over_timer = NodePath("GameOverTimer")
 level_timer = NodePath("LevelTimer")
 level_select_ui = NodePath("UILayer/LevelSelect")
+soundtrack = NodePath("Soundtrack")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1560649801]
 environment = SubResource("Environment_c55ln")
@@ -44,6 +46,10 @@ one_shot = true
 [node name="GameOverTimer" type="Timer" parent="." unique_id=446763999]
 wait_time = 3.0
 one_shot = true
+
+[node name="Soundtrack" parent="." unique_id=683008173 instance=ExtResource("4_fos0i")]
+process_mode = 3
+volume_db = -6.0
 
 [connection signal="level_selected" from="UILayer/LevelSelect" to="." method="start_level"]
 [connection signal="timeout" from="LevelTimer" to="." method="_on_out_of_time"]

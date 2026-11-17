@@ -5,6 +5,15 @@ extends RigidBody2D
 ## Constants
 const DRAG_STRENGTH: float = 10.0 ## Strength with which the player hand drags the goodies
 const MOUSE_DAMPING: float = 0.25 ## Damping applied to mouse_velocity on release
+const CLINK_SOUNDS: Array = [
+	preload("res://SFX/coin_clink.wav"),
+	preload("res://SFX/coin_clink_2.wav"),
+	preload("res://SFX/coin_clink_3.wav")
+] ## This may play one of several random SFX when clinking
+const SFX_THRESHOLD: float = 10.0 ## The minimum velocity for a collision to make a sound
+
+## Editor nodes
+@export var clink_sfx: AudioStreamPlayer ## The SFX node for the sound of the goodie clinking against another object
 
 ## Gameplay variables
 @export var money_amount: float = 1.0 ## The amount of money this particular goodie is worth
@@ -12,6 +21,19 @@ const MOUSE_DAMPING: float = 0.25 ## Damping applied to mouse_velocity on releas
 @onready var hand: Sprite2D ## Keeps a reference to the Hand sprite from TheifHand controller for positional code while grabbed
 @onready var is_grabbed: bool ## Maintains a boolean indicating whether the object is currently grabbed
 @onready var is_released: bool = false ## Boolean that flips for a frame on object release; useful for physics code
+
+## Initialize
+func _ready() -> void:
+	# Enable contact monitoring
+	contact_monitor = true
+	max_contacts_reported = 1
+	# Randomize SFX
+	clink_sfx.stream = CLINK_SOUNDS[randi_range(0,CLINK_SOUNDS.size()-1)]
+
+# Debug input for testing clinkity sounds
+#func _process(_delta: float) -> void:
+#	if (Input.is_action_just_pressed("debug_1")):
+#		clink_sfx.play()
 
 ## Game loop
 ## Grab code is handled in _integrate_forces() to retain physics properties while grabbing
@@ -41,3 +63,11 @@ func released() -> void:
 		apply_central_impulse(Input.get_last_mouse_velocity())
 		is_grabbed = false
 		is_released = true
+
+## Detect collision with other goodies for SFX purposes
+func _on_body_entered(body: Node) -> void:
+	if (body is Goodie and !is_grabbed):
+		print("Goodies collided!")
+		print(self.linear_velocity.length() + body.linear_velocity.length())
+		if (self.linear_velocity.length() + body.linear_velocity.length() >= SFX_THRESHOLD):
+			clink_sfx.play()

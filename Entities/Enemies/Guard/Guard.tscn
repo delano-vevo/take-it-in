@@ -510,6 +510,7 @@ libraries/ = SubResource("AnimationLibrary_xpaf1")
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=558266861]
 active = false
+callback_mode_discrete = 0
 tree_root = SubResource("AnimationNodeBlendTree_c55ln")
 anim_player = NodePath("../AnimationPlayer")
 parameters/MoveStateMachine/Idle/blend_position = Vector2(0, 0)

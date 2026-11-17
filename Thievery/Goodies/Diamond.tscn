@@ -3,10 +3,11 @@
 [ext_resource type="Script" uid="uid://gtyq7bep6amb" path="res://Thievery/Goodies/goodie.gd" id="1_5p0yp"]
 [ext_resource type="Texture2D" uid="uid://cd725no4itsiu" path="res://Thievery/Assets/diamond.png" id="2_p3dyq"]
 
-[node name="Diamond" type="RigidBody2D" unique_id=1958034899 groups=["goodies"]]
+[node name="Diamond" type="RigidBody2D" unique_id=1958034899 node_paths=PackedStringArray("clink_sfx") groups=["goodies"]]
 collision_layer = 8
 collision_mask = 9
 script = ExtResource("1_5p0yp")
+clink_sfx = NodePath("AudioStreamPlayer")
 money_amount = 20.0
 metadata/_custom_type_script = "uid://gtyq7bep6amb"
 
@@ -16,3 +17,8 @@ offset = Vector2(0, 7)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1471683186]
 polygon = PackedVector2Array(-16, -8, 16, -8, 21, -3, 21, 0, 0, 21, -21, 0, -21, -3)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1361109516]
+volume_db = -20.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

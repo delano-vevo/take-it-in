@@ -6,10 +6,11 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_scdh0"]
 radius = 14.0
 
-[node name="GoldCoin" type="RigidBody2D" unique_id=67825559 groups=["goodies"]]
+[node name="GoldCoin" type="RigidBody2D" unique_id=67825559 node_paths=PackedStringArray("clink_sfx") groups=["goodies"]]
 collision_layer = 8
 collision_mask = 9
 script = ExtResource("1_scdh0")
+clink_sfx = NodePath("AudioStreamPlayer")
 money_amount = 3.0
 metadata/_custom_type_script = "uid://gtyq7bep6amb"
 
@@ -18,3 +19,8 @@ texture = ExtResource("2_6h15t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1453150756]
 shape = SubResource("CircleShape2D_scdh0")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=997607968]
+volume_db = -20.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

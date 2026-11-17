@@ -689,7 +689,7 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(-92, -42)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_e5kic"]
-graph_offset = Vector2(-249, 101)
+graph_offset = Vector2(-308, 135)
 nodes/MoveStateMachine/node = SubResource("AnimationNodeStateMachine_lmeus")
 nodes/MoveStateMachine/position = Vector2(-100, 140)
 node_connections = [&"output", 0, &"MoveStateMachine"]
@@ -734,10 +734,11 @@ libraries/ = SubResource("AnimationLibrary_1des2")
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=1885404252]
 active = false
+callback_mode_discrete = 0
 tree_root = SubResource("AnimationNodeBlendTree_e5kic")
 anim_player = NodePath("../AnimationPlayer")
 parameters/MoveStateMachine/Idle/blend_position = Vector2(0, 0)
-parameters/MoveStateMachine/Run/blend_position = Vector2(-0.0017985702, -0.0045661926)
+parameters/MoveStateMachine/Run/blend_position = Vector2(0, 0)
 
 [node name="StateMachine" type="Node" parent="." unique_id=648237448 node_paths=PackedStringArray("idle_state", "run_state", "caught_state", "current_state", "parent")]
 script = ExtResource("3_an6q6")
@@ -784,3 +785,6 @@ process_material = SubResource("ParticleProcessMaterial_hj1c0")
 limit_left = 0
 limit_top = 0
 position_smoothing_enabled = true
+
+[node name="AudioListener2D" type="AudioListener2D" parent="." unique_id=1863503506]
+current = true

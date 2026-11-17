@@ -21,3 +21,11 @@ enum LevelSize {
 	MEDIUM,
 	LARGE,
 }
+
+## Track names for the AudioStream soundtrack sync
+enum AudioTracks {
+	SHAKERS,
+	DRUMLINE,
+	BASSLINE,
+	MELODY,
+}

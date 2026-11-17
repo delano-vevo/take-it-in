@@ -6,12 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://cdswg4i0ii2w5" path="res://Levels/LevelExit.tscn" id="4_iotdp"]
 [ext_resource type="PackedScene" uid="uid://rrcjv7q3caks" path="res://Entities/Player/Player.tscn" id="5_nutv8"]
 [ext_resource type="PackedScene" uid="uid://c62oxfm1pnduf" path="res://Environment/LootSources/LootDisplayCase.tscn" id="6_05pb0"]
-[ext_resource type="PackedScene" uid="uid://b1kuhw0j3fy3u" path="res://Thievery/LootPools/VaseInstance.tscn" id="7_dl8mf"]
-[ext_resource type="PackedScene" uid="uid://dcmkfty4mb7n6" path="res://Thievery/LootPools/BowlInstance.tscn" id="8_xcayt"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_iotdp"]
-vertices = PackedVector2Array(234, 154, 234, 54, 262, 102, 262, 214, 42, 214, 86, 154, 42, 102, 74, 74, 294, 26, 294, 102, 26, 26, 198, 54, 198, 118, 122, 118, 122, 90, 186, 90, 186, 54, 74, 38, 26, 102, 26, 74, 26, 38, 86, 54)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(0, 3, 4, 5), PackedInt32Array(5, 4, 6, 7), PackedInt32Array(8, 9, 2, 1), PackedInt32Array(10, 8, 1, 11), PackedInt32Array(12, 13, 14, 15), PackedInt32Array(11, 12, 15, 16), PackedInt32Array(10, 11, 16, 17), PackedInt32Array(6, 18, 19, 7), PackedInt32Array(17, 20, 10), PackedInt32Array(17, 16, 21), PackedInt32Array(7, 17, 21, 5)])
+vertices = PackedVector2Array(234, 154, 262, 102, 262, 204, 233, 204, 234, 54, 265, 88, 86, 154, 42, 214, 294, 26, 294, 88, 265, 102, 26, 26, 198, 54, 198, 118, 147, 118, 147, 96, 186, 90, 122, 96, 122, 90, 186, 54, 74, 38, 233, 214, 42, 106, 47, 106, 47, 80, 26, 80, 26, 74, 74, 74, 26, 38, 86, 54)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(1, 0, 4, 5), PackedInt32Array(6, 0, 3, 7), PackedInt32Array(8, 9, 5, 4), PackedInt32Array(5, 10, 1), PackedInt32Array(11, 8, 4, 12), PackedInt32Array(13, 14, 15, 16), PackedInt32Array(15, 17, 18, 16), PackedInt32Array(12, 13, 16, 19), PackedInt32Array(11, 12, 19, 20), PackedInt32Array(3, 21, 7), PackedInt32Array(6, 7, 22, 23), PackedInt32Array(24, 25, 26, 27), PackedInt32Array(20, 28, 11), PackedInt32Array(20, 19, 29), PackedInt32Array(27, 20, 29, 6), PackedInt32Array(27, 6, 23, 24)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(0, 0, 320, 0, 320, 240, 0, 240)])
 source_geometry_mode = 2
 
@@ -21,7 +19,7 @@ y_sort_enabled = true
 script = ExtResource("1_fhqol")
 navmesh = NodePath("NavigationRegion2D")
 player = NodePath("Player")
-bounty = 100.0
+bounty = 10.0
 level_path = "res://Levels/Level1.tscn"
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=1625386280]
@@ -49,18 +47,19 @@ position = Vector2(152, 16)
 position = Vector2(152, 36)
 
 [node name="LootDisplayCase" parent="." unique_id=234735297 instance=ExtResource("6_05pb0")]
-position = Vector2(136, 112)
-loot_instance_tscn = ExtResource("7_dl8mf")
+position = Vector2(132, 112)
 
-[node name="LootDisplayCase2" parent="." unique_id=1820981075 instance=ExtResource("6_05pb0")]
+[node name="LootDisplayCase2" parent="." unique_id=1318129957 instance=ExtResource("6_05pb0")]
 position = Vector2(280, 104)
-loot_instance_tscn = ExtResource("8_xcayt")
 
-[node name="LootDisplayCase3" parent="." unique_id=1657849251 instance=ExtResource("6_05pb0")]
-position = Vector2(280, 104)
-loot_instance_tscn = ExtResource("8_xcayt")
+[node name="LootDisplayCase3" parent="." unique_id=1124716878 instance=ExtResource("6_05pb0")]
+position = Vector2(248, 220)
+
+[node name="LootDisplayCase4" parent="." unique_id=1472726441 instance=ExtResource("6_05pb0")]
+position = Vector2(32, 96)
 
 [connection signal="level_end" from="LevelExit" to="." method="_on_level_end"]
 [connection signal="looted" from="LootDisplayCase" to="." method="_on_object_looted"]
 [connection signal="looted" from="LootDisplayCase2" to="." method="_on_object_looted"]
 [connection signal="looted" from="LootDisplayCase3" to="." method="_on_object_looted"]
+[connection signal="looted" from="LootDisplayCase4" to="." method="_on_object_looted"]
