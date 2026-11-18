@@ -8,6 +8,7 @@
 [node name="SilverCoin" type="RigidBody2D" unique_id=771817083 node_paths=PackedStringArray("clink_sfx") groups=["goodies"]]
 collision_layer = 8
 collision_mask = 9
+mass = 0.5
 script = ExtResource("1_a8m1c")
 clink_sfx = NodePath("AudioStreamPlayer")
 metadata/_custom_type_script = "uid://gtyq7bep6amb"

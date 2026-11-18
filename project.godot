@@ -12,7 +12,7 @@ config_version=5
 
 config/name="TAKE IT IN 60 SECONDS"
 config/description="A game of thievery for the Hand-Crafted Jam 2026"
-run/main_scene="uid://cn8sfh0ommq0c"
+run/main_scene="uid://bm8wdcnlmr4aq"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 

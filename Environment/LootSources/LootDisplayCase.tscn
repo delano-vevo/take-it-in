@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cxn5qm054aipx" path="res://Environment/LootSources/loot_source.gd" id="1_pq4vy"]
 [ext_resource type="Texture2D" uid="uid://ldeyducq16bm" path="res://Environment/Assets/loot_display_case.png" id="1_velgj"]
+[ext_resource type="Texture2D" uid="uid://b77b3sv3nisnw" path="res://Environment/Assets/display_light.png" id="3_bghgi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c55ln"]
 size = Vector2(10, 6)
@@ -13,6 +14,7 @@ radius = 16.0
 light_mode = 1
 
 [node name="LootDisplayCase" type="StaticBody2D" unique_id=234735297 node_paths=PackedStringArray("interact_prompt", "obj_sprite") groups=["navigation_polygon_source_geometry_group"]]
+collision_layer = 4
 script = ExtResource("1_pq4vy")
 interact_prompt = NodePath("InteractPrompt")
 obj_sprite = NodePath("Sprite2D")
@@ -58,6 +60,11 @@ text = "SPACE"
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=590054242]
+position = Vector2(0, -8)
+color = Color(1, 1, 1, 0.36862746)
+texture = ExtResource("3_bghgi")
 
 [connection signal="body_entered" from="InteractArea" to="." method="_on_interact_area_body_entered"]
 [connection signal="body_exited" from="InteractArea" to="." method="_on_interact_area_body_exited"]

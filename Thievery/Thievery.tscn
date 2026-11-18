@@ -5,10 +5,11 @@
 [ext_resource type="AudioStream" uid="uid://ckmg7pnw3s3nc" path="res://SFX/case_smashed.wav" id="4_5w44m"]
 [ext_resource type="PackedScene" uid="uid://3fh3qrokvyjq" path="res://Thievery/ThiefBag.tscn" id="5_cgip7"]
 
-[node name="Thievery" type="Node2D" unique_id=990197385 node_paths=PackedStringArray("hand", "loot_sfx")]
+[node name="Thievery" type="Node2D" unique_id=990197385 node_paths=PackedStringArray("hand", "loot_sfx", "tutorial_label")]
 script = ExtResource("1_bq0t3")
 hand = NodePath("ThiefHand")
 loot_sfx = NodePath("AudioStreamPlayer")
+tutorial_label = NodePath("Label")
 
 [node name="Background" type="Polygon2D" parent="." unique_id=108282921]
 z_index = -100
@@ -42,6 +43,19 @@ process_mode = 3
 stream = ExtResource("4_5w44m")
 volume_db = -8.0
 bus = &"SFX"
+
+[node name="Label" type="Label" parent="." unique_id=1742886275]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = 164.0
+offset_right = 134.0
+offset_bottom = 217.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.80784315, 0.6117647, 1)
+text = "IN HERE!"
+horizontal_alignment = 1
 
 [connection signal="get_money" from="ThiefBag" to="." method="_on_thief_bag_get_money"]
 [connection signal="pressed" from="ThieveryUI/Button" to="." method="_on_button_pressed"]

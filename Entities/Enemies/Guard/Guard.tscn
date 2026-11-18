@@ -10,10 +10,11 @@
 [ext_resource type="Script" uid="uid://co1pdqx1iwxx6" path="res://Entities/Enemies/BaseLogic/enemy_state_chase.gd" id="8_dl872"]
 [ext_resource type="Script" uid="uid://bnda6qpafdew0" path="res://Entities/Enemies/Guard/guard_state_arrest.gd" id="9_8dkso"]
 [ext_resource type="AudioStream" uid="uid://b4ix2tsp1o0mf" path="res://SFX/player_spotted.wav" id="10_xh4ja"]
+[ext_resource type="Texture2D" uid="uid://6p3j16hu8k3l" path="res://Entities/Enemies/Assets/exclamation_point.png" id="11_n0sv1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vvg72"]
 radius = 4.0
-height = 16.0
+height = 12.0
 
 [sub_resource type="Animation" id="Animation_b6mrl"]
 length = 0.001
@@ -482,15 +483,21 @@ nodes/MoveStateMachine/node = SubResource("AnimationNodeStateMachine_7wgl2")
 nodes/MoveStateMachine/position = Vector2(-40, 100)
 node_connections = [&"output", 0, &"MoveStateMachine"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_dl872"]
-radius = 12.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xh4ja"]
+radius = 6.0
+height = 20.0
 
-[node name="Guard" type="CharacterBody2D" unique_id=1008242168 node_paths=PackedStringArray("nav_agent", "arrest_state", "alert_sfx", "sight_ray", "state_machine", "animation_tree") groups=["enemies"]]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_n0sv1"]
+light_mode = 1
+
+[node name="Guard" type="CharacterBody2D" unique_id=1008242168 node_paths=PackedStringArray("nav_agent", "arrest_state", "alert_sfx", "exclamation_point", "exclamation_timer", "sight_ray", "state_machine", "animation_tree") groups=["enemies"]]
 collision_layer = 2
 script = ExtResource("1_74ekp")
 nav_agent = NodePath("NavigationAgent2D")
 arrest_state = NodePath("StateMachine/Arrest")
 alert_sfx = NodePath("AlertSound")
+exclamation_point = NodePath("ExclamationPoint")
+exclamation_timer = NodePath("ExclamationPointTimer")
 sight_ray = NodePath("PlayerLookRay")
 max_look_range = 160.0
 max_look_angle = 90.0
@@ -567,13 +574,26 @@ collision_mask = 3
 [node name="CatchArea" type="Area2D" parent="." unique_id=845107029]
 collision_layer = 2
 collision_mask = 2
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CatchArea" unique_id=1608921884]
-shape = SubResource("CircleShape2D_dl872")
+shape = SubResource("CapsuleShape2D_xh4ja")
 
 [node name="AlertSound" type="AudioStreamPlayer" parent="." unique_id=534586344]
 stream = ExtResource("10_xh4ja")
 volume_db = -4.0
 bus = &"SFX"
 
+[node name="ExclamationPoint" type="Sprite2D" parent="." unique_id=496096084]
+visible = false
+material = SubResource("CanvasItemMaterial_n0sv1")
+position = Vector2(0, -10)
+texture = ExtResource("11_n0sv1")
+offset = Vector2(0, -6)
+
+[node name="ExclamationPointTimer" type="Timer" parent="." unique_id=898407911]
+wait_time = 0.5
+one_shot = true
+
 [connection signal="body_entered" from="CatchArea" to="." method="_on_catch_area_body_entered"]
+[connection signal="timeout" from="ExclamationPointTimer" to="." method="_on_exclamation_point_timer_timeout"]

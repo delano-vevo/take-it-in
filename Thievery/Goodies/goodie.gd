@@ -32,13 +32,14 @@ func _ready() -> void:
 
 ## Game loop
 ## Grab code is handled in _integrate_forces() to retain physics properties while grabbing
-func _integrate_forces(state: PhysicsDirectBodyState2D) -> void: 
+func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	if (is_grabbed):
 		# Apply a dragging effect on grabbed, while maintaining physics state otherwise
 		var lin_vel = global_position.direction_to(hand.global_position + position_offset)
 		lin_vel *= global_position.distance_to(hand.global_position + position_offset)
 		linear_velocity = lin_vel * DRAG_STRENGTH
 	elif (is_released):
+		self.modulate.a = 1
 		# Zero out the velocity and apply last mouse velocity instead
 		linear_velocity = Input.get_last_mouse_velocity() * MOUSE_DAMPING
 		is_released = false # Flip the released flag back
@@ -46,6 +47,7 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 ## Called when grabbed by the hand
 func grabbed(grab_hand: Sprite2D) -> void:
 	hand = grab_hand # Save reference
+	linear_velocity = Vector2.ZERO # Zero out velocity on grab to avoid weirdness
 	is_grabbed = true
 	is_released = false
 	# Capture position offset
@@ -54,8 +56,6 @@ func grabbed(grab_hand: Sprite2D) -> void:
 ## Called when released by the hand
 func released() -> void:
 	if (is_grabbed):
-		#linear_velocity = Vector2.ZERO
-		apply_central_impulse(Input.get_last_mouse_velocity())
 		is_grabbed = false
 		is_released = true
 

@@ -14,7 +14,7 @@ func state_entered(parent: Entity) -> void:
 	# TODO: swap this for a running animation if time permits
 	parent.player_spotted.emit()
 	# TODO: add a little graphic here to indicate the enemy has spotted the player (read: rip off MGS)
-	parent.alert_sfx.playing = true
+	parent.do_alert()
 	# Capture the player's current position as the last seen position
 	last_seen_position = parent.player.global_position
 

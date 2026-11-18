@@ -16,6 +16,9 @@ const LEVEL_SIZES: Dictionary[Enum.LevelSize, String] = {
 	Enum.LevelSize.LARGE: "Large",
 }
 
+## Keeps track of whether the player needs tutorialized
+var tutorial: bool = true
+
 ## Keeps track of what levels have been cleared already
 ## Stores data in the form of [path_to_level String, is_cleared: bool key-value pairs]
 var levels_cleared: Dictionary[String, bool] = {
