@@ -19,5 +19,6 @@ polygon = PackedVector2Array(0, -15, 7, -8, 7, 8, 0, 14, -7, 8, -7, -8)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1072032899]
 volume_db = -20.0
+bus = &"SFX"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

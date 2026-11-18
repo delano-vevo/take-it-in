@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://dh1pckhr2kq5m"]
+
+[ext_resource type="Script" uid="uid://ceymetmkr5mgv" path="res://Thievery/LootPools/loot_pool.gd" id="1_s3sj0"]
+[ext_resource type="PackedScene" uid="uid://ce030lvvslm60" path="res://Thievery/Goodies/Ruby.tscn" id="2_fppvc"]
+[ext_resource type="PackedScene" uid="uid://xh27fmyp40ic" path="res://Thievery/Goodies/SilverCoin.tscn" id="3_662k0"]
+[ext_resource type="PackedScene" uid="uid://cp3co1llqyi0h" path="res://Thievery/Goodies/GoldCoin.tscn" id="4_wfib6"]
+
+[node name="LootPool9" type="Node2D" unique_id=853146804]
+script = ExtResource("1_s3sj0")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1482149234]
+color = Color(1, 0, 0, 0.40392157)
+polygon = PackedVector2Array(-50, -40, 50, -40, 50, 40, -50, 40)
+
+[node name="SilverCoin2" parent="." unique_id=1571006333 instance=ExtResource("3_662k0")]
+position = Vector2(44, 12)
+
+[node name="SilverCoin3" parent="." unique_id=771817083 instance=ExtResource("3_662k0")]
+position = Vector2(36, 32)
+
+[node name="SilverCoin8" parent="." unique_id=1429857958 instance=ExtResource("3_662k0")]
+position = Vector2(44, -36)
+
+[node name="SilverCoin6" parent="." unique_id=553688310 instance=ExtResource("3_662k0")]
+position = Vector2(-16, -28)
+
+[node name="SilverCoin5" parent="." unique_id=1315479861 instance=ExtResource("3_662k0")]
+position = Vector2(-32, 32)
+
+[node name="GoldCoin" parent="." unique_id=67825559 instance=ExtResource("4_wfib6")]
+position = Vector2(8, -8)
+
+[node name="GoldCoin3" parent="." unique_id=1348413961 instance=ExtResource("4_wfib6")]
+position = Vector2(-20, -4)
+
+[node name="GoldCoin2" parent="." unique_id=99306533 instance=ExtResource("4_wfib6")]
+position = Vector2(-40, -24)
+
+[node name="GoldCoin4" parent="." unique_id=243108103 instance=ExtResource("4_wfib6")]
+position = Vector2(36, -12)
+
+[node name="GoldCoin5" parent="." unique_id=1350124868 instance=ExtResource("4_wfib6")]
+position = Vector2(-8, 24)
+
+[node name="GoldCoin6" parent="." unique_id=1818315553 instance=ExtResource("4_wfib6")]
+position = Vector2(20, 16)
+
+[node name="Ruby" parent="." unique_id=1302996315 instance=ExtResource("2_fppvc")]
+position = Vector2(-40, 8)
+
+[node name="Ruby2" parent="." unique_id=25695674 instance=ExtResource("2_fppvc")]
+position = Vector2(16, -32)
+rotation = 1.5707964

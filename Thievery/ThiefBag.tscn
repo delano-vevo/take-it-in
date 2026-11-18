@@ -50,5 +50,6 @@ shape = SubResource("RectangleShape2D_c55ln")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1761799857]
 stream = ExtResource("4_jivmp")
 volume_db = -6.0
+bus = &"SFX"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

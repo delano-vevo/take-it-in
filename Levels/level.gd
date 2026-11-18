@@ -29,6 +29,7 @@ func _ready() -> void:
 	for enemy in get_tree().get_nodes_in_group("enemies"):
 		enemy.player_spotted.connect(_on_player_spotted)
 		enemy.player_lost.connect(_on_player_lost)
+		enemy.level = self # Also update the level pointer
 
 ## Checks whether a given point is in this level's navigation region
 func is_point_in_navmesh(point: Vector2) -> bool:
@@ -48,12 +49,9 @@ func _on_player_spotted() -> void:
 
 ## Handles lost_player signals from individual guards
 func _on_player_lost(which_enemy: Enemy) -> void:
-	print("Lost the player...")
 	var player_lost: bool = true
 	for enemy in get_tree().get_nodes_in_group("enemies"):
 		if (enemy.state_machine.current_state == enemy.state_machine.chase_state and enemy != which_enemy):
-			print("Enemy: " + str(enemy) + " is in the chase state: " + str(enemy.state_machine.current_state))
 			player_lost = false
 	if (player_lost):
-		print("The player is safe!")
 		player_safe.emit()

@@ -493,7 +493,8 @@ arrest_state = NodePath("StateMachine/Arrest")
 alert_sfx = NodePath("AlertSound")
 sight_ray = NodePath("PlayerLookRay")
 max_look_range = 160.0
-chase_speed = 80.0
+max_look_angle = 90.0
+chase_speed = 70.0
 state_machine = NodePath("StateMachine")
 animation_tree = NodePath("AnimationTree")
 move_speed = 50.0
@@ -573,5 +574,6 @@ shape = SubResource("CircleShape2D_dl872")
 [node name="AlertSound" type="AudioStreamPlayer" parent="." unique_id=534586344]
 stream = ExtResource("10_xh4ja")
 volume_db = -4.0
+bus = &"SFX"
 
 [connection signal="body_entered" from="CatchArea" to="." method="_on_catch_area_body_entered"]

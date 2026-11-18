@@ -1,0 +1,101 @@
+[gd_scene format=4 uid="uid://cnk2w0r6vxybe"]
+
+[ext_resource type="Script" uid="uid://cs4ixfa7pmr8q" path="res://Levels/level.gd" id="1_av5uk"]
+[ext_resource type="PackedScene" uid="uid://dpyjy1eev83g3" path="res://Entities/Enemies/Guard/Guard.tscn" id="2_no07l"]
+[ext_resource type="PackedScene" uid="uid://c87tbcgwjtk3" path="res://Environment/LevelTiles.tscn" id="3_gt7ug"]
+[ext_resource type="PackedScene" uid="uid://cdswg4i0ii2w5" path="res://Levels/LevelExit.tscn" id="4_8t16l"]
+[ext_resource type="PackedScene" uid="uid://rrcjv7q3caks" path="res://Entities/Player/Player.tscn" id="5_qmd1l"]
+[ext_resource type="PackedScene" uid="uid://c62oxfm1pnduf" path="res://Environment/LootSources/LootDisplayCase.tscn" id="6_yoktl"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_iotdp"]
+vertices = PackedVector2Array(310, 336, 281, 336, 218, 314, 246, 314, 454, 234, 454, 342, 442, 298, 442, 262, 246, 154, 218, 218, 218, 182, 230, 154, 310, 278, 282, 314, 282, 54, 422, 234, 374, 262, 394, 234, 422, 198, 367, 234, 367, 250, 369, 42, 390, 42, 390, 80, 369, 80, 369, 86, 310, 86, 310, 122, 433, 122, 433, 138, 394, 134, 454, 138, 454, 198, 358, 134, 358, 176, 337, 176, 337, 182, 310, 182, 346, 266, 346, 250, 374, 330, 410, 330, 410, 314, 423, 314, 423, 298, 346, 342, 346, 278, 310, 266, 118, 122, 214, 122, 214, 138, 186, 150, 150, 150, 230, 138, 207, 176, 207, 182, 186, 176, 150, 176, 129, 176, 129, 182, 118, 182, 90, 54, 118, 218, 129, 218, 129, 234, 122, 262, 150, 234, 150, 250, 186, 250, 186, 234, 207, 234, 218, 278, 207, 218, 122, 278, 106, 262, 106, 246, 90, 246, 281, 342, 26, 342, 54, 314, 54, 54, 26, 42, 39, 42, 39, 26, 369, 26, 118, 54)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(8, 3, 9, 10, 11), PackedInt32Array(12, 0, 13, 14), PackedInt32Array(15, 4, 7, 16), PackedInt32Array(15, 16, 17, 18), PackedInt32Array(19, 17, 16, 20), PackedInt32Array(21, 22, 23, 24), PackedInt32Array(24, 25, 26), PackedInt32Array(27, 28, 29, 30), PackedInt32Array(29, 31, 32, 18), PackedInt32Array(18, 17, 30, 29), PackedInt32Array(27, 30, 33), PackedInt32Array(33, 34, 35, 27), PackedInt32Array(35, 36, 37, 27), PackedInt32Array(38, 39, 20, 16, 40), PackedInt32Array(41, 42, 43, 5), PackedInt32Array(43, 44, 6, 5), PackedInt32Array(41, 5, 45, 40), PackedInt32Array(40, 45, 46), PackedInt32Array(38, 40, 46), PackedInt32Array(47, 38, 46, 12), PackedInt32Array(47, 12, 14), PackedInt32Array(37, 47, 14), PackedInt32Array(27, 37, 14), PackedInt32Array(26, 27, 14), PackedInt32Array(48, 49, 50, 51, 52), PackedInt32Array(50, 53, 11, 10, 54, 51), PackedInt32Array(10, 55, 54), PackedInt32Array(54, 56, 51), PackedInt32Array(52, 57, 58, 48), PackedInt32Array(48, 58, 59, 60, 61), PackedInt32Array(62, 63, 64, 65), PackedInt32Array(64, 66, 67, 65), PackedInt32Array(68, 69, 70, 71), PackedInt32Array(70, 72, 9, 3, 71), PackedInt32Array(68, 71, 73, 65, 67), PackedInt32Array(65, 74, 75), PackedInt32Array(75, 76, 61), PackedInt32Array(2, 1, 77, 78, 79), PackedInt32Array(80, 79, 78, 81, 82), PackedInt32Array(61, 80, 82, 83, 84, 21), PackedInt32Array(21, 24, 26, 14), PackedInt32Array(65, 75, 61, 62), PackedInt32Array(3, 13, 0), PackedInt32Array(3, 2, 71), PackedInt32Array(60, 62, 61), PackedInt32Array(85, 48, 61), PackedInt32Array(85, 61, 21), PackedInt32Array(85, 21, 14)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(0, 0, 480, 0, 480, 360, 0, 360)])
+source_geometry_mode = 2
+
+[node name="Level3_2" type="Node2D" unique_id=792643418 node_paths=PackedStringArray("navmesh", "player")]
+process_mode = 1
+y_sort_enabled = true
+script = ExtResource("1_av5uk")
+navmesh = NodePath("NavigationRegion2D")
+player = NodePath("Player")
+level_bounds = Vector2(480, 360)
+bounty = 175.0
+security_level = 1
+level_size = 1
+level_path = "res://Levels/Level3_2.tscn"
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=1625386280]
+visible = false
+navigation_polygon = SubResource("NavigationPolygon_iotdp")
+metadata/_edit_lock_ = true
+
+[node name="Floor" type="Polygon2D" parent="." unique_id=868716719]
+color = Color(0.654902, 0.32156864, 0.32156864, 1)
+polygon = PackedVector2Array(0, 0, 480, 0, 480, 360, 0, 360)
+
+[node name="Enemies" type="Node2D" parent="." unique_id=1527932540]
+
+[node name="Guard" parent="Enemies" unique_id=1008242168 node_paths=PackedStringArray("level") instance=ExtResource("2_no07l")]
+position = Vector2(40, 328)
+level = NodePath("../..")
+patrol_path = Array[Vector2]([Vector2(0, 0)])
+
+[node name="LevelTiles" parent="." unique_id=1201900110 instance=ExtResource("3_gt7ug")]
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAHAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAALAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAANAAAAAAAAAAAAAAAOAAAAAAAAAAAAAAAPAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAARAAAAAAAAAAAAAAASAAAAAAAAAAAAAAATAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA0AAAAAAAAAAAAAAAwAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAEAAAAAAAAAAAAVAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAWAAAAAAAAAAAAAAAXAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAAZAAAAAAAAAAAAAAAaAAAAAAAAAAAAAAAbAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAAdAAAAAAAAAAAAAAAdAAEAAAAAAAAAAAAdAAIAAAAAAAAAAAAdAAMAAAAAAAAAAAAdAAQAAAAAAAAAAAAdAAUAAAAAAAAAAAAdAAYAAAAAAAAAAAAdAAcAAAAAAAAAAAAdAAgAAAAAAAAAAAAdAAkAAAAAAAAAAAAdAAoAAAAAAAAAAAAdAAsAAAAAAAAAAAAdAAwAAAAAAAAAAAAdAA0AAAAAAAAAAAAdAA4AAAAAAAAAAAAdAA8AAAAAAAAAAAAdABAAAAAAAAAAAAAdABEAAAAAAAAAAAAdABIAAAAAAAAAAAAdABMAAAAAAAAAAAAdABQAAAAAAAAAAAAdABUAAAAAAAAAAAAdABYAAAAAAAAAAAAcABYAAAAAAAAAAAAbABYAAAAAAAAAAAAaABYAAAAAAAAAAAAZABYAAAAAAAAAAAAYABYAAAAAAAAAAAAXABYAAAAAAAAAAAAWABYAAAAAAAAAAAAVABYAAAAAAAAAAAAUABYAAAAAAAAAAAATABYAAAAAAAAAAAASABYAAAAAAAAAAAARABYAAAAAAAAAAAAQABYAAAAAAAAAAAAPABYAAAAAAAAAAAAOABYAAAAAAAAAAAANABYAAAAAAAAAAAAMABYAAAAAAAAAAAALABYAAAAAAAAAAAAKABYAAAAAAAAAAAAJABYAAAAAAAAAAAAIABYAAAAAAAAAAAAHABYAAAAAAAAAAAAGABYAAAAAAAAAAAAFABYAAAAAAAAAAAAEABYAAAAAAAAAAAADABYAAAAAAAAAAAACABYAAAAAAAAAAAABABYAAAAAAAAAAAAAABYAAAAAAAAAAAAAABUAAAAAAAAAAAAAABQAAAAAAAAAAAAAABMAAAAAAAAAAAAAABIAAAAAAAAAAAAAABEAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA8AAAAAAAAAAAAEABIAAAAAAAAAAAAEABEAAAAAAAAAAAAEABAAAAAAAAAAAAAEAA8AAAAAAAAAAAAEAA4AAAAAAAAAAAAEAA0AAAAAAAAAAAAEAAwAAAAAAAAAAAAFABIAAAAAAAAAAAAGABIAAAAAAAAAAAAHABIAAAAAAAAAAAAIABIAAAAAAAAAAAAJABIAAAAAAAAAAAAKABIAAAAAAAAAAAALABIAAAAAAAAAAAAEAAoAAAAAAAAAAAAEAAsAAAAAAAAAAAAQABIAAAAAAAAAAAAQABEAAAAAAAAAAAAQABAAAAAAAAAAAAAQAA8AAAAAAAAAAAAQAA4AAAAAAAAAAAAQAA0AAAAAAAAAAAAQAAwAAAAAAAAAAAAQAAsAAAAAAAAAAAAQAAoAAAAAAAAAAAAKAA4AAAAAAAAAAAAKAA0AAAAAAAAAAAAKAAwAAAAAAAAAAAAKAAsAAAAAAAAAAAAQAAcAAAAAAAAAAAAQAAkAAAAAAAAAAAAQAAgAAAAAAAAAAAAEAAkAAAAAAAAAAAAEAAgAAAAAAAAAAAAEAAcAAAAAAAAAAAAMABIAAAAAAAAAAAAKAAoAAAAAAAAAAAAQAAYAAAAAAAAAAAAPAAYAAAAAAAAAAAAOAAYAAAAAAAAAAAANAAYAAAAAAAAAAAAMAAYAAAAAAAAAAAALAAYAAAAAAAAAAAAKAAYAAAAAAAAAAAAJAAYAAAAAAAAAAAAIAAYAAAAAAAAAAAAEAAYAAAAAAAAAAAALAAwAAAAAAAAAAAAMAAwAAAAAAAAAAAAJAAwAAAAAAAAAAAAIAAwAAAAAAAAAAAAFABEAAAAAAAAAAAAFABAAAAAAAAAAAAAGABEAAAAAAAAAAAAPAAcAAAAAAAAAAAAPAAgAAAAAAAAAAAAOAAcAAAAAAAAAAAAUABIAAAAAAAAAAAAUAA8AAAAAAAAAAAAUAA4AAAAAAAAAAAAUABMAAAAAAAAAAAAUABQAAAAAAAAAAAAUABUAAAAAAAAAAAAUAA0AAAAAAAAAAAAVAA0AAAAAAAAAAAAWAA0AAAAAAAAAAAAXAA0AAAAAAAAAAAAcAA0AAAAAAAAAAAAbAA0AAAAAAAAAAAAYABIAAAAAAAAAAAAYABEAAAAAAAAAAAAZABEAAAAAAAAAAAAYABMAAAAAAAAAAAAaABEAAAAAAAAAAAAXAAwAAAAAAAAAAAAXAAsAAAAAAAAAAAAXAAoAAAAAAAAAAAAXAAkAAAAAAAAAAAAUAAYAAAAAAAAAAAAVAAYAAAAAAAAAAAAWAAYAAAAAAAAAAAAXAAYAAAAAAAAAAAAYAAYAAAAAAAAAAAAZAAYAAAAAAAAAAAAaAAYAAAAAAAAAAAAbAAYAAAAAAAAAAAAcAAYAAAAAAAAAAAAZAAUAAAAAAAAAAAAZAAQAAAAAAAAAAAAZAAMAAAAAAAAAAAAZAAIAAAAAAAAAAAAZAAEAAAAAAAAAAAAaAAEAAAAAAAAAAAAaAAIAAAAAAAAAAAAaAAMAAAAAAAAAAAAbAAQAAAAAAAAAAAAbAAUAAAAAAAAAAAAaAAUAAAAAAAAAAAAaAAQAAAAAAAAAAAAbAAIAAAAAAAAAAAAbAAEAAAAAAAAAAAAbAAMAAAAAAAAAAAAcAAEAAAAAAAAAAAAcAAIAAAAAAAAAAAAcAAMAAAAAAAAAAAAcAAQAAAAAAAAAAAAcAAUAAAAAAAAAAAAQAAUAAAAAAAAAAAAQAAQAAAAAAAAAAAAEAAUAAAAAAAAAAAAEAAQAAAAAAAAAAAAIAAQAAAAAAAAAAAAJAAQAAAAAAAAAAAAKAAQAAAAAAAAAAAALAAQAAAAAAAAAAAAMAAQAAAAAAAAAAAANAAQAAAAAAAAAAAAOAAQAAAAAAAAAAAAPAAQAAAAAAAAAAAALAAUAAAAAAAAAAAAKAAUAAAAAAAAAAAAJAAUAAAAAAAAAAAAIAAUAAAAAAAAAAAAMAAUAAAAAAAAAAAANAAUAAAAAAAAAAAAOAAUAAAAAAAAAAAAPAAUAAAAAAAAAAAAUAAwAAAAAAAAAAAAVAAwAAAAAAAAAAAAWAAwAAAAAAAAAAAA=")
+
+[node name="LevelExit" parent="." unique_id=482110922 instance=ExtResource("4_8t16l")]
+position = Vector2(152, 16)
+
+[node name="Player" parent="." unique_id=1364859685 instance=ExtResource("5_qmd1l")]
+position = Vector2(152, 36)
+
+[node name="LootDisplayCase" parent="." unique_id=234735297 instance=ExtResource("6_yoktl")]
+position = Vector2(144, 192)
+
+[node name="LootDisplayCase2" parent="." unique_id=373185553 instance=ExtResource("6_yoktl")]
+position = Vector2(192, 192)
+
+[node name="LootDisplayCase3" parent="." unique_id=1080919316 instance=ExtResource("6_yoktl")]
+position = Vector2(192, 224)
+
+[node name="LootDisplayCase4" parent="." unique_id=500026971 instance=ExtResource("6_yoktl")]
+position = Vector2(144, 224)
+
+[node name="LootDisplayCase5" parent="." unique_id=1145203086 instance=ExtResource("6_yoktl")]
+position = Vector2(352, 192)
+
+[node name="LootDisplayCase6" parent="." unique_id=1637812795 instance=ExtResource("6_yoktl")]
+position = Vector2(352, 240)
+
+[node name="LootDisplayCase7" parent="." unique_id=1595484644 instance=ExtResource("6_yoktl")]
+position = Vector2(408, 304)
+
+[node name="LootDisplayCase8" parent="." unique_id=682448225 instance=ExtResource("6_yoktl")]
+position = Vector2(448, 128)
+
+[node name="LootDisplayCase9" parent="." unique_id=461845760 instance=ExtResource("6_yoktl")]
+position = Vector2(384, 96)
+
+[node name="LootDisplayCase10" parent="." unique_id=360745900 instance=ExtResource("6_yoktl")]
+position = Vector2(384, 32)
+
+[node name="LootDisplayCase11" parent="." unique_id=950948964 instance=ExtResource("6_yoktl")]
+position = Vector2(296, 352)
+
+[node name="LootDisplayCase12" parent="." unique_id=949619502 instance=ExtResource("6_yoktl")]
+position = Vector2(24, 32)
+
+[connection signal="level_end" from="LevelExit" to="." method="_on_level_end"]
+[connection signal="looted" from="LootDisplayCase" to="." method="_on_object_looted"]
+[connection signal="looted" from="LootDisplayCase2" to="." method="_on_object_looted"]
+[connection signal="looted" from="LootDisplayCase3" to="." method="_on_object_looted"]
+[connection signal="looted" from="LootDisplayCase4" to="." method="_on_object_looted"]
+[connection signal="looted" from="LootDisplayCase5" to="." method="_on_object_looted"]
+[connection signal="looted" from="LootDisplayCase6" to="." method="_on_object_looted"]
+[connection signal="looted" from="LootDisplayCase7" to="." method="_on_object_looted"]
+[connection signal="looted" from="LootDisplayCase8" to="." method="_on_object_looted"]
+[connection signal="looted" from="LootDisplayCase9" to="." method="_on_object_looted"]
+[connection signal="looted" from="LootDisplayCase10" to="." method="_on_object_looted"]
+[connection signal="looted" from="LootDisplayCase11" to="." method="_on_object_looted"]
+[connection signal="looted" from="LootDisplayCase12" to="." method="_on_object_looted"]

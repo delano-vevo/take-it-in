@@ -13,7 +13,6 @@ func state_entered(parent: Entity) -> void:
 	parent.move_playback.travel("Walk")
 	# TODO: swap this for a running animation if time permits
 	parent.player_spotted.emit()
-	print("Enemy: " + str(parent) + " spotted the player!")
 	# TODO: add a little graphic here to indicate the enemy has spotted the player (read: rip off MGS)
 	parent.alert_sfx.playing = true
 	# Capture the player's current position as the last seen position
@@ -29,7 +28,7 @@ func physics_process(delta: float, parent: Entity) -> State:
 		if (parent.level.is_point_in_navmesh(parent.player.global_position)):
 			last_seen_position = parent.player.global_position
 	# Check if the enemy has yet reached the last seen position
-	if (parent.global_position.distance_to(last_seen_position) > (parent.chase_speed * delta)+1): # Small offset here to prevent weirdness around floating point calculations not properly triggering idle state
+	if (parent.global_position.distance_to(last_seen_position) > (parent.chase_speed * delta)+4): # Small offset here to prevent weirdness around floating point calculations not properly triggering idle state
 		# Invoke the NavigationAgent in the Enemy to path to the next patrol point
 		parent.nav_agent.target_position = last_seen_position
 		var move_dir = parent.global_position.direction_to(parent.nav_agent.get_next_path_position())
@@ -44,7 +43,6 @@ func physics_process(delta: float, parent: Entity) -> State:
 	else:
 		# When the last seen position is reached, revert to idle state
 		parent.global_position = last_seen_position
-		print("Enemy: " + str(parent) + " lost the player!")
 		parent.player_lost.emit(parent)
 		return idle_state
 	# No exit conditions encountered - continue pursuit

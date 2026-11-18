@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://dsu05wrtknakc"]
+
+[ext_resource type="Script" uid="uid://ceymetmkr5mgv" path="res://Thievery/LootPools/loot_pool.gd" id="1_6hoys"]
+[ext_resource type="PackedScene" uid="uid://xh27fmyp40ic" path="res://Thievery/Goodies/SilverCoin.tscn" id="2_qa005"]
+[ext_resource type="PackedScene" uid="uid://cp3co1llqyi0h" path="res://Thievery/Goodies/GoldCoin.tscn" id="3_rwrsf"]
+
+[node name="LootPool5" type="Node2D" unique_id=853146804]
+script = ExtResource("1_6hoys")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1482149234]
+color = Color(1, 0, 0, 0.40392157)
+polygon = PackedVector2Array(-50, -40, 50, -40, 50, 40, -50, 40)
+
+[node name="SilverCoin" parent="." unique_id=771817083 instance=ExtResource("2_qa005")]
+position = Vector2(-39, -24)
+
+[node name="SilverCoin4" parent="." unique_id=1027454246 instance=ExtResource("2_qa005")]
+position = Vector2(-18, -30)
+
+[node name="SilverCoin2" parent="." unique_id=787841870 instance=ExtResource("2_qa005")]
+position = Vector2(-24, 28)
+
+[node name="SilverCoin5" parent="." unique_id=1155153916 instance=ExtResource("2_qa005")]
+position = Vector2(-41, 16)
+
+[node name="SilverCoin3" parent="." unique_id=925758586 instance=ExtResource("2_qa005")]
+position = Vector2(-5, 20)
+
+[node name="SilverCoin6" parent="." unique_id=904514045 instance=ExtResource("2_qa005")]
+position = Vector2(45, 26)
+
+[node name="GoldCoin" parent="." unique_id=67825559 instance=ExtResource("3_rwrsf")]
+position = Vector2(-23, -2)
+
+[node name="GoldCoin4" parent="." unique_id=1068486693 instance=ExtResource("3_rwrsf")]
+position = Vector2(20, 24)
+
+[node name="GoldCoin5" parent="." unique_id=415528573 instance=ExtResource("3_rwrsf")]
+position = Vector2(36, 0)
+
+[node name="GoldCoin6" parent="." unique_id=1975963560 instance=ExtResource("3_rwrsf")]
+position = Vector2(6, -3)
+
+[node name="GoldCoin7" parent="." unique_id=868132942 instance=ExtResource("3_rwrsf")]
+position = Vector2(8, -32)
+
+[node name="GoldCoin8" parent="." unique_id=467452162 instance=ExtResource("3_rwrsf")]
+position = Vector2(8, -32)
+
+[node name="GoldCoin9" parent="." unique_id=1324474018 instance=ExtResource("3_rwrsf")]
+position = Vector2(37, -29)

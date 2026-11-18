@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://fb28yevydthy"]
+
+[ext_resource type="Script" uid="uid://ceymetmkr5mgv" path="res://Thievery/LootPools/loot_pool.gd" id="1_bghcw"]
+[ext_resource type="PackedScene" uid="uid://ce030lvvslm60" path="res://Thievery/Goodies/Ruby.tscn" id="2_bghcw"]
+[ext_resource type="PackedScene" uid="uid://bemnpfn7wbwr" path="res://Thievery/Goodies/Diamond.tscn" id="3_o67ib"]
+
+[node name="LootPool6" type="Node2D" unique_id=853146804]
+script = ExtResource("1_bghcw")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1482149234]
+color = Color(1, 0, 0, 0.40392157)
+polygon = PackedVector2Array(-50, -40, 50, -40, 50, 40, -50, 40)
+
+[node name="Ruby" parent="." unique_id=1302996315 instance=ExtResource("2_bghcw")]
+position = Vector2(-24, -8)
+
+[node name="Ruby2" parent="." unique_id=2121910912 instance=ExtResource("2_bghcw")]
+position = Vector2(32, -16)
+
+[node name="Ruby3" parent="." unique_id=1148675800 instance=ExtResource("2_bghcw")]
+position = Vector2(24, 24)
+
+[node name="Ruby4" parent="." unique_id=1233237556 instance=ExtResource("2_bghcw")]
+position = Vector2(-40, 16)
+
+[node name="Diamond" parent="." unique_id=1958034899 instance=ExtResource("3_o67ib")]
+position = Vector2(-8, 16)
+rotation = -0.5235988
+
+[node name="Diamond2" parent="." unique_id=1992706013 instance=ExtResource("3_o67ib")]
+position = Vector2(0, -24)
