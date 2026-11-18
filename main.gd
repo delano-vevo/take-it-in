@@ -129,6 +129,9 @@ func _on_level_end() -> void:
 		# Put up the end-of-level success screen
 		var level_end = level_end_tscn.instantiate()
 		level_end.restart_game.connect(_on_restart)
+		# Determine the player's ranking based on their surplus cash:
+		var extra_money: float = money - current_level.bounty
+		level_end.do_rank(extra_money)
 		ui_layer.add_child(level_end)
 	else:
 		var bounty_failed = bounty_failed_tscn.instantiate()

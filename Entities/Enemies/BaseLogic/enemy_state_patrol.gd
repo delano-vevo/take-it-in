@@ -20,7 +20,7 @@ func physics_process(delta: float, parent: Entity) -> State:
 	if (parent.look_for_player()):
 		return chase_state
 	# Walk the parent towards the next patrol point, if it's still out of range
-	if (parent.global_position.distance_to(patrol_point) > parent.move_speed * delta):
+	if (parent.global_position.distance_to(patrol_point) > (parent.move_speed * delta) + 4): # Small offset to avoid weirdness with floating point imprecision
 		# Invoke the NavigationAgent in the Enemy to path to the next patrol point
 		parent.nav_agent.target_position = patrol_point
 		var move_dir = parent.global_position.direction_to(parent.nav_agent.get_next_path_position())

@@ -20,7 +20,7 @@ script = ExtResource("1_5brs8")
 navmesh = NodePath("NavigationRegion2D")
 player = NodePath("Player")
 level_bounds = Vector2(480, 360)
-bounty = 150.0
+bounty = 175.0
 security_level = 1
 level_size = 1
 level_path = "res://Levels/Level4.tscn"
@@ -36,7 +36,7 @@ polygon = PackedVector2Array(0, 0, 480, 0, 480, 360, 0, 360)
 [node name="Enemies" type="Node2D" parent="." unique_id=1527932540]
 
 [node name="Guard" parent="Enemies" unique_id=1008242168 node_paths=PackedStringArray("level") instance=ExtResource("2_qgpl5")]
-position = Vector2(220, 40)
+position = Vector2(80, 320)
 level = NodePath("../..")
 patrol_path = Array[Vector2]([Vector2(80, 320), Vector2(46, 172), Vector2(320, 168), Vector2(46, 172), Vector2(220, 40)])
 
