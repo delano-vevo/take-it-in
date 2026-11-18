@@ -9,8 +9,13 @@ const menu_level_tscn: PackedScene = preload("res://GUI/Screens/LevelSelect/Menu
 ## Contains String paths to all Level scenes in the game
 const levels: Array[String] = [
 	"res://Levels/Level1.tscn",
+	"res://Levels/Level1_2.tscn",
 	"res://Levels/Level2.tscn",
 	"res://Levels/Level3.tscn",
+	"res://Levels/Level3_2.tscn",
+	"res://Levels/Level4.tscn",
+	"res://Levels/Level5.tscn",
+	"res://Levels/Level6.tscn",
 ]
 
 ## Signals
@@ -31,7 +36,6 @@ func _ready() -> void:
 	# Add buttons to the UI for all created levels
 	var i: int = 1
 	for level in levels:
-		print(level)
 		var menu_level = menu_level_tscn.instantiate()
 		menu_level.level = load(level)
 		menu_level.level_path = level
@@ -42,7 +46,6 @@ func _ready() -> void:
 
 ## Handles level select signals from individual buttons
 func _on_level_selected(level: PackedScene) -> void:
-	print("Level selected : " + str(level))
 	current_level = level
 	# Load the level preview for this level into the preview window
 	var selected_level: Level = level.instantiate()

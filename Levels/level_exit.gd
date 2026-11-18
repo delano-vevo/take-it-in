@@ -18,5 +18,4 @@ func _on_door_open_range_body_exited(body: Node2D) -> void:
 ## Body entered in the level exit area - if player, trigger level end
 func _on_body_entered(body: Node2D) -> void:
 	if (body is Player):
-		print("Exiting level")
 		level_end.emit()

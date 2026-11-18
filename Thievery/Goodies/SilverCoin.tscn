@@ -20,5 +20,6 @@ shape = SubResource("CircleShape2D_a8m1c")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1467369400]
 volume_db = -20.0
+bus = &"SFX"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

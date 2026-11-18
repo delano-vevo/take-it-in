@@ -40,15 +40,9 @@ func _process(delta: float) -> void:
 	# Update the timer UI
 	if (current_level != null): # Don't do this when a level isn't loaded
 		gameplay_ui.timer_ui.set_time(level_timer.time_left)
-	# Debug inputs
-	# Test out the audio tracks with the debug keys
-	if (Input.is_action_just_pressed("debug_1")):
-		soundtrack.fade_in_track(Enum.AudioTracks.SHAKERS)
-		soundtrack.fade_in_track(Enum.AudioTracks.DRUMLINE)
-	if (Input.is_action_just_pressed("debug_2")):
-		soundtrack.fade_in_track(Enum.AudioTracks.BASSLINE)
-	if (Input.is_action_just_pressed("debug_3")):
-		soundtrack.fade_in_track(Enum.AudioTracks.MELODY)
+	# Music toggle
+	if (Input.is_action_just_pressed("toggle_music")):
+		AudioServer.set_bus_mute(2,!AudioServer.is_bus_mute(2))
 
 ## Starts a Level based on the provided path
 func start_level(level_tscn: PackedScene) -> void:
@@ -79,7 +73,6 @@ func start_level(level_tscn: PackedScene) -> void:
 
 ## Triggers a Thievery event
 func do_thievery() -> void:
-	print("Initiating diabolical thievery!")
 	var thievery = thievery_tscn.instantiate()
 	thievery_layer.add_child(thievery)
 	thievery.thievery_done.connect(_on_thievery_done)
@@ -92,7 +85,6 @@ func _on_thievery_done() -> void:
 ## Signal handler for when money is obtained
 func _on_money_get(amount: float) -> void:
 	money += amount
-	print("Total money: " + str(money))
 	# Update the UI element
 	gameplay_ui.money_ui.set_money(money, current_level.bounty)
 
@@ -104,9 +96,17 @@ func _on_out_of_time() -> void:
 ## Signal handler for game over state
 func _on_game_over() -> void:
 	if (game_over_timer.is_stopped()): # Avoid multiple concurrent game overs
+		# Start the countdown and add some siren FX
 		game_over_timer.start()
 		var sirens = sirens_fx.instantiate()
 		ui_layer.add_child(sirens)
+		# Kill the thievery instance, if necessary
+		if (thievery_layer.get_child(0) != null):
+			thievery_layer.get_child(0).queue_free()
+			_on_thievery_done()
+		# Tone down the music
+		soundtrack.fade_out_track(Enum.AudioTracks.MELODY)
+		soundtrack.fade_out_track(Enum.AudioTracks.DRUMLINE)
 
 ## Process the actual game over screen after timer delay
 func _on_game_over_timer_timeout() -> void:
@@ -117,8 +117,6 @@ func _on_game_over_timer_timeout() -> void:
 
 ## Called when a player hits Try again from the game over screen
 func _on_restart() -> void:
-	print("Restarting the game")
-	# TODO: hook this up to the actual level loader eventually
 	get_tree().reload_current_scene()
 
 ## Called when the level signals the player has taken the exit door to leave

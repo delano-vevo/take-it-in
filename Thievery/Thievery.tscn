@@ -40,6 +40,8 @@ text = "Let's Split!"
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=699891477]
 process_mode = 3
 stream = ExtResource("4_5w44m")
+volume_db = -8.0
+bus = &"SFX"
 
 [connection signal="get_money" from="ThiefBag" to="." method="_on_thief_bag_get_money"]
 [connection signal="pressed" from="ThieveryUI/Button" to="." method="_on_button_pressed"]

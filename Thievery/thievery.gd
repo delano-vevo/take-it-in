@@ -5,8 +5,18 @@ extends Node2D
 const CONTAINER_POSITION: Vector2 = Vector2(220,160)
 
 ## Resource loads
+## Probably shouldn't have all this shit preloaded but what can you do lmao
 const loot_pools: Array = [
-	preload("res://Thievery/LootPools/LootPool1.tscn")
+	preload("res://Thievery/LootPools/LootPool1.tscn"),
+	preload("res://Thievery/LootPools/LootPool2.tscn"),
+	preload("res://Thievery/LootPools/LootPool3.tscn"),
+	preload("res://Thievery/LootPools/LootPool4.tscn"),
+	preload("res://Thievery/LootPools/LootPool5.tscn"),
+	preload("res://Thievery/LootPools/LootPool6.tscn"),
+	preload("res://Thievery/LootPools/LootPool7.tscn"),
+	preload("res://Thievery/LootPools/LootPool8.tscn"),
+	preload("res://Thievery/LootPools/LootPool9.tscn"),
+	preload("res://Thievery/LootPools/LootPool10.tscn"),
 ]
 const loot_containers: Array = [
 	preload("res://Thievery/LootContainers/BigJug.tscn"),

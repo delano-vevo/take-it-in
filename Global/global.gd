@@ -20,6 +20,11 @@ const LEVEL_SIZES: Dictionary[Enum.LevelSize, String] = {
 ## Stores data in the form of [path_to_level String, is_cleared: bool key-value pairs]
 var levels_cleared: Dictionary[String, bool] = {
 	"res://Levels/Level1.tscn": false,
+	"res://Levels/Level1_2.tscn": false,
 	"res://Levels/Level2.tscn": false,
 	"res://Levels/Level3.tscn": false,
+	"res://Levels/Level3_2.tscn": false,
+	"res://Levels/Level4.tscn": false,
+	"res://Levels/Level5.tscn": false,
+	"res://Levels/Level6.tscn": false,
 }

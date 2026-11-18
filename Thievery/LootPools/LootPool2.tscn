@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://b5qjpxo4pik75"]
+
+[ext_resource type="PackedScene" uid="uid://xh27fmyp40ic" path="res://Thievery/Goodies/SilverCoin.tscn" id="1_e57xr"]
+[ext_resource type="Script" uid="uid://ceymetmkr5mgv" path="res://Thievery/LootPools/loot_pool.gd" id="1_v3cvi"]
+[ext_resource type="PackedScene" uid="uid://cp3co1llqyi0h" path="res://Thievery/Goodies/GoldCoin.tscn" id="2_nwdl5"]
+[ext_resource type="PackedScene" uid="uid://bemnpfn7wbwr" path="res://Thievery/Goodies/Diamond.tscn" id="3_nwdl5"]
+[ext_resource type="PackedScene" uid="uid://ce030lvvslm60" path="res://Thievery/Goodies/Ruby.tscn" id="3_v3cvi"]
+
+[node name="LootPool2" type="Node2D" unique_id=853146804]
+script = ExtResource("1_v3cvi")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1482149234]
+visible = false
+color = Color(1, 0, 0, 0.40392157)
+polygon = PackedVector2Array(-50, -40, 50, -40, 50, 40, -50, 40)
+
+[node name="SilverCoin" parent="." unique_id=771817083 instance=ExtResource("1_e57xr")]
+position = Vector2(-35, -25)
+
+[node name="SilverCoin5" parent="." unique_id=70383456 instance=ExtResource("1_e57xr")]
+position = Vector2(-44, -3)
+
+[node name="SilverCoin2" parent="." unique_id=787841870 instance=ExtResource("1_e57xr")]
+position = Vector2(-10, -21)
+
+[node name="SilverCoin3" parent="." unique_id=447743118 instance=ExtResource("1_e57xr")]
+position = Vector2(14, -27)
+
+[node name="SilverCoin4" parent="." unique_id=637672299 instance=ExtResource("1_e57xr")]
+position = Vector2(38, -18)
+
+[node name="GoldCoin" parent="." unique_id=67825559 instance=ExtResource("2_nwdl5")]
+position = Vector2(-36, 23)
+
+[node name="GoldCoin2" parent="." unique_id=1248714935 instance=ExtResource("2_nwdl5")]
+position = Vector2(-5, 22)
+
+[node name="GoldCoin4" parent="." unique_id=1068486693 instance=ExtResource("2_nwdl5")]
+position = Vector2(34, 24)
+
+[node name="Diamond" parent="." unique_id=1958034899 instance=ExtResource("3_nwdl5")]
+position = Vector2(15, -1)
+
+[node name="Ruby" parent="." unique_id=1302996315 instance=ExtResource("3_v3cvi")]
+position = Vector2(-19, -0.9999995)
+rotation = 1.8325958

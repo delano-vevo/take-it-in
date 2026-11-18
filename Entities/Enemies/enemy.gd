@@ -12,6 +12,7 @@ extends Entity
 @export var max_look_range: float = 200.0 ## The maximum distance at which the guard will "spot" the player
 @export var max_look_angle: float = 80.0 ## The maximum angle, in degrees, that the player can be away from the enemy's facing direction and still be detected
 @export var chase_speed: float = 100.0 ## The speed at which the enemy runs when pursuing the player
+@export var hear_range: float = 30.0 ## The range at which a guard can hear the player approaching and detect them even if facing another direction
 
 ## Internal variables
 @onready var next_patrol_point: int = 0 ## An index into the patrol_path array to point the enemy towards the next patrol point, when relevant
@@ -36,7 +37,8 @@ func look_for_player() -> bool:
 		# Check if the player is in range
 		if (global_position.distance_to(player.global_position) <= max_look_range):
 			# Check if the player is in the same direction the enemy is currently facing
-			if (abs(rad_to_deg(global_position.angle_to_point(player.global_position)) - facing) <= max_look_angle):
+			# OR, if the player is within an inner radius that allows detection based on sound
+			if (global_position.distance_to(player.global_position) <= hear_range or abs(rad_to_deg(global_position.angle_to_point(player.global_position)) - facing) <= max_look_angle):
 				# Update the raycast and check if it sees the player
 				sight_ray.target_position = player.global_position - global_position
 				sight_ray.force_raycast_update()

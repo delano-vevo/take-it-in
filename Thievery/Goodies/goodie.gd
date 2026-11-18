@@ -30,11 +30,6 @@ func _ready() -> void:
 	# Randomize SFX
 	clink_sfx.stream = CLINK_SOUNDS[randi_range(0,CLINK_SOUNDS.size()-1)]
 
-# Debug input for testing clinkity sounds
-#func _process(_delta: float) -> void:
-#	if (Input.is_action_just_pressed("debug_1")):
-#		clink_sfx.play()
-
 ## Game loop
 ## Grab code is handled in _integrate_forces() to retain physics properties while grabbing
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void: 
@@ -67,7 +62,5 @@ func released() -> void:
 ## Detect collision with other goodies for SFX purposes
 func _on_body_entered(body: Node) -> void:
 	if (body is Goodie and !is_grabbed):
-		print("Goodies collided!")
-		print(self.linear_velocity.length() + body.linear_velocity.length())
 		if (self.linear_velocity.length() + body.linear_velocity.length() >= SFX_THRESHOLD):
 			clink_sfx.play()

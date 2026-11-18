@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://w707i2so4mq"]
+
+[ext_resource type="Script" uid="uid://ceymetmkr5mgv" path="res://Thievery/LootPools/loot_pool.gd" id="1_xqpns"]
+[ext_resource type="PackedScene" uid="uid://ce030lvvslm60" path="res://Thievery/Goodies/Ruby.tscn" id="2_hxiv5"]
+[ext_resource type="PackedScene" uid="uid://bemnpfn7wbwr" path="res://Thievery/Goodies/Diamond.tscn" id="3_hw8n5"]
+[ext_resource type="PackedScene" uid="uid://xh27fmyp40ic" path="res://Thievery/Goodies/SilverCoin.tscn" id="4_hw8n5"]
+[ext_resource type="PackedScene" uid="uid://cp3co1llqyi0h" path="res://Thievery/Goodies/GoldCoin.tscn" id="5_xg4tb"]
+
+[node name="LootPool7" type="Node2D" unique_id=853146804]
+script = ExtResource("1_xqpns")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1482149234]
+color = Color(1, 0, 0, 0.40392157)
+polygon = PackedVector2Array(-50, -40, 50, -40, 50, 40, -50, 40)
+
+[node name="Ruby2" parent="." unique_id=2121910912 instance=ExtResource("2_hxiv5")]
+position = Vector2(48, 0)
+
+[node name="Ruby4" parent="." unique_id=1233237556 instance=ExtResource("2_hxiv5")]
+position = Vector2(-40, 32)
+rotation = -0.7853982
+
+[node name="Diamond" parent="." unique_id=1958034899 instance=ExtResource("3_hw8n5")]
+position = Vector2(-8, 16)
+rotation = -0.5235988
+
+[node name="SilverCoin" parent="." unique_id=771817083 instance=ExtResource("4_hw8n5")]
+position = Vector2(16, 32)
+
+[node name="SilverCoin2" parent="." unique_id=1571006333 instance=ExtResource("4_hw8n5")]
+position = Vector2(40, 24)
+
+[node name="SilverCoin3" parent="." unique_id=1899444470 instance=ExtResource("4_hw8n5")]
+position = Vector2(24, 8)
+
+[node name="SilverCoin5" parent="." unique_id=26994146 instance=ExtResource("4_hw8n5")]
+position = Vector2(8, -16)
+
+[node name="SilverCoin6" parent="." unique_id=553688310 instance=ExtResource("4_hw8n5")]
+position = Vector2(-8, -32)
+
+[node name="SilverCoin7" parent="." unique_id=859945461 instance=ExtResource("4_hw8n5")]
+position = Vector2(-40, -24)
+
+[node name="SilverCoin4" parent="." unique_id=1075874093 instance=ExtResource("4_hw8n5")]
+position = Vector2(-40, 8)
+
+[node name="GoldCoin" parent="." unique_id=67825559 instance=ExtResource("5_xg4tb")]
+position = Vector2(-16, -8)
+
+[node name="GoldCoin2" parent="." unique_id=99306533 instance=ExtResource("5_xg4tb")]
+position = Vector2(32, -24)
